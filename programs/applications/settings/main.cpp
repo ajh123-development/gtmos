@@ -33,8 +33,8 @@ int main(int argc, char** argv, char** envp) {
 	auto window = UI::Window::create();
 
 	const Duck::Path path = _app_info.base_path();
-	const char* path_str = path.basename().c_str();
-	Duck::Log::info("Path at %s", path_str);
+	const char* path_str = path.string().c_str();
+	Duck::Log::info("Path at ", path_str);
 
 	auto dir_widget = SettingsViewWidget::make(path_str);
 	window->set_contents(dir_widget);
