@@ -5011,6 +5011,14 @@ build programs\applications\settings\CMakeFiles\settings.dir\SettingsWidget.cpp.
   TARGET_COMPILE_PDB = programs\applications\settings\CMakeFiles\settings.dir\
   TARGET_PDB = programs\applications\settings\settings.pdb
 
+build programs\applications\settings\CMakeFiles\settings.dir\SettingsViewWidget.cpp.obj: CXX_COMPILER__settings_Debug D$:\vm\gtmos\programs\applications\settings\SettingsViewWidget.cpp || cmake_object_order_depends_target_settings
+  FLAGS = /DWIN32 /D_WINDOWS /W3 /GR /EHsc /MDd /Zi /Ob0 /Od /RTC1 -std:c++17
+  INCLUDES = -ID:\vm\gtmos\libraries -ID:\vm\gtmos\libraries\libc -ID:\vm\gtmos\. -I\include\c++
+  OBJECT_DIR = programs\applications\settings\CMakeFiles\settings.dir
+  OBJECT_FILE_DIR = programs\applications\settings\CMakeFiles\settings.dir
+  TARGET_COMPILE_PDB = programs\applications\settings\CMakeFiles\settings.dir\
+  TARGET_PDB = programs\applications\settings\settings.pdb
+
 
 # =============================================================================
 # Link build statements for EXECUTABLE target settings
@@ -5019,7 +5027,7 @@ build programs\applications\settings\CMakeFiles\settings.dir\SettingsWidget.cpp.
 #############################################
 # Link the executable programs\applications\settings\settings.exe
 
-build programs\applications\settings\settings.exe: CXX_EXECUTABLE_LINKER__settings_Debug programs\applications\settings\CMakeFiles\settings.dir\main.cpp.obj programs\applications\settings\CMakeFiles\settings.dir\SettingsWidget.cpp.obj | libraries\libui\libui.lib libraries\libpond\libpond.lib libraries\libriver\libriver.lib libraries\libapp\libapp.lib libraries\libgraphics\libgraphics.lib libraries\libduck\libduck.lib || libraries\libapp\libapp.dll libraries\libc\libc libraries\libduck\libduck.dll libraries\libgraphics\libgraphics.dll libraries\libpond\libpond.dll libraries\libriver\libriver.dll libraries\libui\libui.dll
+build programs\applications\settings\settings.exe: CXX_EXECUTABLE_LINKER__settings_Debug programs\applications\settings\CMakeFiles\settings.dir\main.cpp.obj programs\applications\settings\CMakeFiles\settings.dir\SettingsWidget.cpp.obj programs\applications\settings\CMakeFiles\settings.dir\SettingsViewWidget.cpp.obj | libraries\libui\libui.lib libraries\libpond\libpond.lib libraries\libriver\libriver.lib libraries\libapp\libapp.lib libraries\libgraphics\libgraphics.lib libraries\libduck\libduck.lib || libraries\libapp\libapp.dll libraries\libc\libc libraries\libduck\libduck.dll libraries\libgraphics\libgraphics.dll libraries\libpond\libpond.dll libraries\libriver\libriver.dll libraries\libui\libui.dll
   FLAGS = /DWIN32 /D_WINDOWS /W3 /GR /EHsc /MDd /Zi /Ob0 /Od /RTC1
   LINK_FLAGS = /machine:x64 /debug /INCREMENTAL /subsystem:console
   LINK_LIBRARIES = libraries\libui\libui.lib  libraries\libpond\libpond.lib  libraries\libriver\libriver.lib  libraries\libapp\libapp.lib  libraries\libgraphics\libgraphics.lib  libraries\libduck\libduck.lib  kernel32.lib user32.lib gdi32.lib winspool.lib shell32.lib ole32.lib oleaut32.lib uuid.lib comdlg32.lib advapi32.lib
