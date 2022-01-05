@@ -4948,6 +4948,110 @@ build programs\applications\files\list_install_components: phony
 
 # =============================================================================
 # Write statements declared in CMakeLists.txt:
+# D:/vm/gtmos/programs/applications/CMakeLists.txt
+# =============================================================================
+
+
+#############################################
+# Utility command for install/local
+
+build programs\applications\settings\CMakeFiles\install\local.util: CUSTOM_COMMAND programs\applications\settings\all
+  COMMAND = cmd.exe /C "cd /D D:\vm\gtmos\out\build\windows-default\programs\applications\settings && "C:\Program Files\Microsoft Visual Studio\2022\Community\Common7\IDE\CommonExtensions\Microsoft\CMake\CMake\bin\cmake.exe" -DCMAKE_INSTALL_LOCAL_ONLY=1 -P cmake_install.cmake"
+  DESC = Installing only the local directory...
+  pool = console
+  restat = 1
+
+build programs\applications\settings\install\local: phony programs\applications\settings\CMakeFiles\install\local.util
+
+
+#############################################
+# Utility command for install
+
+build programs\applications\settings\CMakeFiles\install.util: CUSTOM_COMMAND programs\applications\settings\all
+  COMMAND = cmd.exe /C "cd /D D:\vm\gtmos\out\build\windows-default\programs\applications\settings && "C:\Program Files\Microsoft Visual Studio\2022\Community\Common7\IDE\CommonExtensions\Microsoft\CMake\CMake\bin\cmake.exe" -P cmake_install.cmake"
+  DESC = Install the project...
+  pool = console
+  restat = 1
+
+build programs\applications\settings\install: phony programs\applications\settings\CMakeFiles\install.util
+
+
+#############################################
+# Utility command for edit_cache
+
+build programs\applications\settings\CMakeFiles\edit_cache.util: CUSTOM_COMMAND
+  COMMAND = cmd.exe /C "cd /D D:\vm\gtmos\out\build\windows-default\programs\applications\settings && "C:\Program Files\Microsoft Visual Studio\2022\Community\Common7\IDE\CommonExtensions\Microsoft\CMake\CMake\bin\cmake.exe" -E echo "No interactive CMake dialog available.""
+  DESC = No interactive CMake dialog available...
+  restat = 1
+
+build programs\applications\settings\edit_cache: phony programs\applications\settings\CMakeFiles\edit_cache.util
+
+# =============================================================================
+# Object build statements for EXECUTABLE target settings
+
+
+#############################################
+# Order-only phony target for settings
+
+build cmake_object_order_depends_target_settings: phony || cmake_object_order_depends_target_libapp cmake_object_order_depends_target_libduck cmake_object_order_depends_target_libgraphics cmake_object_order_depends_target_libpond cmake_object_order_depends_target_libriver cmake_object_order_depends_target_libui libraries\libc\libc
+
+build programs\applications\settings\CMakeFiles\settings.dir\main.cpp.obj: CXX_COMPILER__settings_Debug D$:\vm\gtmos\programs\applications\settings\main.cpp || cmake_object_order_depends_target_settings
+  FLAGS = /DWIN32 /D_WINDOWS /W3 /GR /EHsc /MDd /Zi /Ob0 /Od /RTC1 -std:c++17
+  INCLUDES = -ID:\vm\gtmos\libraries -ID:\vm\gtmos\libraries\libc -ID:\vm\gtmos\. -I\include\c++
+  OBJECT_DIR = programs\applications\settings\CMakeFiles\settings.dir
+  OBJECT_FILE_DIR = programs\applications\settings\CMakeFiles\settings.dir
+  TARGET_COMPILE_PDB = programs\applications\settings\CMakeFiles\settings.dir\
+  TARGET_PDB = programs\applications\settings\settings.pdb
+
+build programs\applications\settings\CMakeFiles\settings.dir\SettingsWidget.cpp.obj: CXX_COMPILER__settings_Debug D$:\vm\gtmos\programs\applications\settings\SettingsWidget.cpp || cmake_object_order_depends_target_settings
+  FLAGS = /DWIN32 /D_WINDOWS /W3 /GR /EHsc /MDd /Zi /Ob0 /Od /RTC1 -std:c++17
+  INCLUDES = -ID:\vm\gtmos\libraries -ID:\vm\gtmos\libraries\libc -ID:\vm\gtmos\. -I\include\c++
+  OBJECT_DIR = programs\applications\settings\CMakeFiles\settings.dir
+  OBJECT_FILE_DIR = programs\applications\settings\CMakeFiles\settings.dir
+  TARGET_COMPILE_PDB = programs\applications\settings\CMakeFiles\settings.dir\
+  TARGET_PDB = programs\applications\settings\settings.pdb
+
+
+# =============================================================================
+# Link build statements for EXECUTABLE target settings
+
+
+#############################################
+# Link the executable programs\applications\settings\settings.exe
+
+build programs\applications\settings\settings.exe: CXX_EXECUTABLE_LINKER__settings_Debug programs\applications\settings\CMakeFiles\settings.dir\main.cpp.obj programs\applications\settings\CMakeFiles\settings.dir\SettingsWidget.cpp.obj | libraries\libui\libui.lib libraries\libpond\libpond.lib libraries\libriver\libriver.lib libraries\libapp\libapp.lib libraries\libgraphics\libgraphics.lib libraries\libduck\libduck.lib || libraries\libapp\libapp.dll libraries\libc\libc libraries\libduck\libduck.dll libraries\libgraphics\libgraphics.dll libraries\libpond\libpond.dll libraries\libriver\libriver.dll libraries\libui\libui.dll
+  FLAGS = /DWIN32 /D_WINDOWS /W3 /GR /EHsc /MDd /Zi /Ob0 /Od /RTC1
+  LINK_FLAGS = /machine:x64 /debug /INCREMENTAL /subsystem:console
+  LINK_LIBRARIES = libraries\libui\libui.lib  libraries\libpond\libpond.lib  libraries\libriver\libriver.lib  libraries\libapp\libapp.lib  libraries\libgraphics\libgraphics.lib  libraries\libduck\libduck.lib  kernel32.lib user32.lib gdi32.lib winspool.lib shell32.lib ole32.lib oleaut32.lib uuid.lib comdlg32.lib advapi32.lib
+  LINK_PATH = -LIBPATH:\lib\gcc   -LIBPATH:\\lib
+  OBJECT_DIR = programs\applications\settings\CMakeFiles\settings.dir
+  POST_BUILD = cd .
+  PRE_LINK = cd .
+  TARGET_COMPILE_PDB = programs\applications\settings\CMakeFiles\settings.dir\
+  TARGET_FILE = programs\applications\settings\settings.exe
+  TARGET_IMPLIB = programs\applications\settings\settings.lib
+  TARGET_PDB = programs\applications\settings\settings.pdb
+
+
+#############################################
+# Utility command for rebuild_cache
+
+build programs\applications\settings\CMakeFiles\rebuild_cache.util: CUSTOM_COMMAND
+  COMMAND = cmd.exe /C "cd /D D:\vm\gtmos\out\build\windows-default\programs\applications\settings && "C:\Program Files\Microsoft Visual Studio\2022\Community\Common7\IDE\CommonExtensions\Microsoft\CMake\CMake\bin\cmake.exe" --regenerate-during-build -SD:\vm\gtmos -BD:\vm\gtmos\out\build\windows-default"
+  DESC = Running CMake to regenerate build system...
+  pool = console
+  restat = 1
+
+build programs\applications\settings\rebuild_cache: phony programs\applications\settings\CMakeFiles\rebuild_cache.util
+
+
+#############################################
+# Utility command for list_install_components
+
+build programs\applications\settings\list_install_components: phony
+
+# =============================================================================
+# Write statements declared in CMakeLists.txt:
 # D:/vm/gtmos/programs/CMakeLists.txt
 # =============================================================================
 
@@ -6027,6 +6131,10 @@ build sandbar: phony programs\applications\sandbar\sandbar.exe
 
 build sandbar.exe: phony programs\applications\sandbar\sandbar.exe
 
+build settings: phony programs\applications\settings\settings.exe
+
+build settings.exe: phony programs\applications\settings\settings.exe
+
 build terminal: phony programs\applications\terminal\terminal.exe
 
 build terminal.exe: phony programs\applications\terminal\terminal.exe
@@ -6159,7 +6267,7 @@ build programs\all: phony programs\applications\all programs\coreutils\all progr
 #############################################
 # Folder: D:/vm/gtmos/out/build/windows-default/programs/applications
 
-build programs\applications\all: phony programs\applications\calculator\all programs\applications\terminal\all programs\applications\4inarow\all programs\applications\monitor\all programs\applications\sandbar\all programs\applications\files\all
+build programs\applications\all: phony programs\applications\calculator\all programs\applications\terminal\all programs\applications\4inarow\all programs\applications\monitor\all programs\applications\sandbar\all programs\applications\files\all programs\applications\settings\all
 
 # =============================================================================
 
@@ -6195,6 +6303,13 @@ build programs\applications\monitor\all: phony programs\applications\monitor\mon
 # Folder: D:/vm/gtmos/out/build/windows-default/programs/applications/sandbar
 
 build programs\applications\sandbar\all: phony programs\applications\sandbar\sandbar.exe
+
+# =============================================================================
+
+#############################################
+# Folder: D:/vm/gtmos/out/build/windows-default/programs/applications/settings
+
+build programs\applications\settings\all: phony programs\applications\settings\settings.exe
 
 # =============================================================================
 
@@ -6250,14 +6365,14 @@ build services\pond\all: phony services\pond\pond.exe
 #############################################
 # Re-run CMake if any of its inputs changed.
 
-build build.ninja: RERUN_CMAKE | ..\..\..\CMakeLists.txt ..\..\..\kernel\CMakeLists.txt ..\..\..\libraries\CMakeLists.txt ..\..\..\libraries\ld\CMakeLists.txt ..\..\..\libraries\libapp\CMakeLists.txt ..\..\..\libraries\libc\CMakeLists.txt ..\..\..\libraries\libduck\CMakeLists.txt ..\..\..\libraries\libgraphics\CMakeLists.txt ..\..\..\libraries\libm\CMakeLists.txt ..\..\..\libraries\libpond\CMakeLists.txt ..\..\..\libraries\libriver\CMakeLists.txt ..\..\..\libraries\libsys\CMakeLists.txt ..\..\..\libraries\libterm\CMakeLists.txt ..\..\..\libraries\libui\CMakeLists.txt ..\..\..\ports\CMakeLists.txt ..\..\..\programs\CMakeLists.txt ..\..\..\programs\applications\4inarow\CMakeLists.txt ..\..\..\programs\applications\CMakeLists.txt ..\..\..\programs\applications\calculator\CMakeLists.txt ..\..\..\programs\applications\files\CMakeLists.txt ..\..\..\programs\applications\monitor\CMakeLists.txt ..\..\..\programs\applications\sandbar\CMakeLists.txt ..\..\..\programs\applications\terminal\CMakeLists.txt ..\..\..\programs\coreutils\CMakeLists.txt ..\..\..\programs\dsh\CMakeLists.txt ..\..\..\services\CMakeLists.txt ..\..\..\services\init\CMakeLists.txt ..\..\..\services\pond\CMakeLists.txt C$:\Program$ Files\Microsoft$ Visual$ Studio\2022\Community\Common7\IDE\CommonExtensions\Microsoft\CMake\CMake\share\cmake-3.21\Modules\CMakeASMCompiler.cmake.in C$:\Program$ Files\Microsoft$ Visual$ Studio\2022\Community\Common7\IDE\CommonExtensions\Microsoft\CMake\CMake\share\cmake-3.21\Modules\CMakeASMInformation.cmake C$:\Program$ Files\Microsoft$ Visual$ Studio\2022\Community\Common7\IDE\CommonExtensions\Microsoft\CMake\CMake\share\cmake-3.21\Modules\CMakeASM_NASMInformation.cmake C$:\Program$ Files\Microsoft$ Visual$ Studio\2022\Community\Common7\IDE\CommonExtensions\Microsoft\CMake\CMake\share\cmake-3.21\Modules\CMakeCInformation.cmake C$:\Program$ Files\Microsoft$ Visual$ Studio\2022\Community\Common7\IDE\CommonExtensions\Microsoft\CMake\CMake\share\cmake-3.21\Modules\CMakeCXXInformation.cmake C$:\Program$ Files\Microsoft$ Visual$ Studio\2022\Community\Common7\IDE\CommonExtensions\Microsoft\CMake\CMake\share\cmake-3.21\Modules\CMakeCommonLanguageInclude.cmake C$:\Program$ Files\Microsoft$ Visual$ Studio\2022\Community\Common7\IDE\CommonExtensions\Microsoft\CMake\CMake\share\cmake-3.21\Modules\CMakeCompilerIdDetection.cmake C$:\Program$ Files\Microsoft$ Visual$ Studio\2022\Community\Common7\IDE\CommonExtensions\Microsoft\CMake\CMake\share\cmake-3.21\Modules\CMakeDetermineASMCompiler.cmake C$:\Program$ Files\Microsoft$ Visual$ Studio\2022\Community\Common7\IDE\CommonExtensions\Microsoft\CMake\CMake\share\cmake-3.21\Modules\CMakeDetermineASM_NASMCompiler.cmake C$:\Program$ Files\Microsoft$ Visual$ Studio\2022\Community\Common7\IDE\CommonExtensions\Microsoft\CMake\CMake\share\cmake-3.21\Modules\CMakeDetermineCompiler.cmake C$:\Program$ Files\Microsoft$ Visual$ Studio\2022\Community\Common7\IDE\CommonExtensions\Microsoft\CMake\CMake\share\cmake-3.21\Modules\CMakeDetermineCompilerId.cmake C$:\Program$ Files\Microsoft$ Visual$ Studio\2022\Community\Common7\IDE\CommonExtensions\Microsoft\CMake\CMake\share\cmake-3.21\Modules\CMakeFindBinUtils.cmake C$:\Program$ Files\Microsoft$ Visual$ Studio\2022\Community\Common7\IDE\CommonExtensions\Microsoft\CMake\CMake\share\cmake-3.21\Modules\CMakeGenericSystem.cmake C$:\Program$ Files\Microsoft$ Visual$ Studio\2022\Community\Common7\IDE\CommonExtensions\Microsoft\CMake\CMake\share\cmake-3.21\Modules\CMakeInitializeConfigs.cmake C$:\Program$ Files\Microsoft$ Visual$ Studio\2022\Community\Common7\IDE\CommonExtensions\Microsoft\CMake\CMake\share\cmake-3.21\Modules\CMakeLanguageInformation.cmake C$:\Program$ Files\Microsoft$ Visual$ Studio\2022\Community\Common7\IDE\CommonExtensions\Microsoft\CMake\CMake\share\cmake-3.21\Modules\CMakeRCInformation.cmake C$:\Program$ Files\Microsoft$ Visual$ Studio\2022\Community\Common7\IDE\CommonExtensions\Microsoft\CMake\CMake\share\cmake-3.21\Modules\CMakeSystemSpecificInformation.cmake C$:\Program$ Files\Microsoft$ Visual$ Studio\2022\Community\Common7\IDE\CommonExtensions\Microsoft\CMake\CMake\share\cmake-3.21\Modules\CMakeSystemSpecificInitialize.cmake C$:\Program$ Files\Microsoft$ Visual$ Studio\2022\Community\Common7\IDE\CommonExtensions\Microsoft\CMake\CMake\share\cmake-3.21\Modules\CMakeTestASMCompiler.cmake C$:\Program$ Files\Microsoft$ Visual$ Studio\2022\Community\Common7\IDE\CommonExtensions\Microsoft\CMake\CMake\share\cmake-3.21\Modules\CMakeTestASM_NASMCompiler.cmake C$:\Program$ Files\Microsoft$ Visual$ Studio\2022\Community\Common7\IDE\CommonExtensions\Microsoft\CMake\CMake\share\cmake-3.21\Modules\Compiler\CMakeCommonCompilerMacros.cmake C$:\Program$ Files\Microsoft$ Visual$ Studio\2022\Community\Common7\IDE\CommonExtensions\Microsoft\CMake\CMake\share\cmake-3.21\Modules\Compiler\MSVC-ASM.cmake C$:\Program$ Files\Microsoft$ Visual$ Studio\2022\Community\Common7\IDE\CommonExtensions\Microsoft\CMake\CMake\share\cmake-3.21\Modules\Compiler\MSVC-C.cmake C$:\Program$ Files\Microsoft$ Visual$ Studio\2022\Community\Common7\IDE\CommonExtensions\Microsoft\CMake\CMake\share\cmake-3.21\Modules\Compiler\MSVC-CXX.cmake C$:\Program$ Files\Microsoft$ Visual$ Studio\2022\Community\Common7\IDE\CommonExtensions\Microsoft\CMake\CMake\share\cmake-3.21\Modules\Platform\Windows-MSVC-C.cmake C$:\Program$ Files\Microsoft$ Visual$ Studio\2022\Community\Common7\IDE\CommonExtensions\Microsoft\CMake\CMake\share\cmake-3.21\Modules\Platform\Windows-MSVC-CXX.cmake C$:\Program$ Files\Microsoft$ Visual$ Studio\2022\Community\Common7\IDE\CommonExtensions\Microsoft\CMake\CMake\share\cmake-3.21\Modules\Platform\Windows-MSVC.cmake C$:\Program$ Files\Microsoft$ Visual$ Studio\2022\Community\Common7\IDE\CommonExtensions\Microsoft\CMake\CMake\share\cmake-3.21\Modules\Platform\Windows.cmake C$:\Program$ Files\Microsoft$ Visual$ Studio\2022\Community\Common7\IDE\CommonExtensions\Microsoft\CMake\CMake\share\cmake-3.21\Modules\Platform\WindowsPaths.cmake CMakeCache.txt CMakeFiles\3.21.21080301-MSVC_2\CMakeASMCompiler.cmake CMakeFiles\3.21.21080301-MSVC_2\CMakeASM_NASMCompiler.cmake CMakeFiles\3.21.21080301-MSVC_2\CMakeCCompiler.cmake CMakeFiles\3.21.21080301-MSVC_2\CMakeCXXCompiler.cmake CMakeFiles\3.21.21080301-MSVC_2\CMakeRCCompiler.cmake CMakeFiles\3.21.21080301-MSVC_2\CMakeSystem.cmake
+build build.ninja: RERUN_CMAKE | ..\..\..\CMakeLists.txt ..\..\..\kernel\CMakeLists.txt ..\..\..\libraries\CMakeLists.txt ..\..\..\libraries\ld\CMakeLists.txt ..\..\..\libraries\libapp\CMakeLists.txt ..\..\..\libraries\libc\CMakeLists.txt ..\..\..\libraries\libduck\CMakeLists.txt ..\..\..\libraries\libgraphics\CMakeLists.txt ..\..\..\libraries\libm\CMakeLists.txt ..\..\..\libraries\libpond\CMakeLists.txt ..\..\..\libraries\libriver\CMakeLists.txt ..\..\..\libraries\libsys\CMakeLists.txt ..\..\..\libraries\libterm\CMakeLists.txt ..\..\..\libraries\libui\CMakeLists.txt ..\..\..\ports\CMakeLists.txt ..\..\..\programs\CMakeLists.txt ..\..\..\programs\applications\4inarow\CMakeLists.txt ..\..\..\programs\applications\CMakeLists.txt ..\..\..\programs\applications\calculator\CMakeLists.txt ..\..\..\programs\applications\files\CMakeLists.txt ..\..\..\programs\applications\monitor\CMakeLists.txt ..\..\..\programs\applications\sandbar\CMakeLists.txt ..\..\..\programs\applications\settings\CMakeLists.txt ..\..\..\programs\applications\terminal\CMakeLists.txt ..\..\..\programs\coreutils\CMakeLists.txt ..\..\..\programs\dsh\CMakeLists.txt ..\..\..\services\CMakeLists.txt ..\..\..\services\init\CMakeLists.txt ..\..\..\services\pond\CMakeLists.txt C$:\Program$ Files\Microsoft$ Visual$ Studio\2022\Community\Common7\IDE\CommonExtensions\Microsoft\CMake\CMake\share\cmake-3.21\Modules\CMakeASMInformation.cmake C$:\Program$ Files\Microsoft$ Visual$ Studio\2022\Community\Common7\IDE\CommonExtensions\Microsoft\CMake\CMake\share\cmake-3.21\Modules\CMakeASM_NASMInformation.cmake C$:\Program$ Files\Microsoft$ Visual$ Studio\2022\Community\Common7\IDE\CommonExtensions\Microsoft\CMake\CMake\share\cmake-3.21\Modules\CMakeCInformation.cmake C$:\Program$ Files\Microsoft$ Visual$ Studio\2022\Community\Common7\IDE\CommonExtensions\Microsoft\CMake\CMake\share\cmake-3.21\Modules\CMakeCXXInformation.cmake C$:\Program$ Files\Microsoft$ Visual$ Studio\2022\Community\Common7\IDE\CommonExtensions\Microsoft\CMake\CMake\share\cmake-3.21\Modules\CMakeCommonLanguageInclude.cmake C$:\Program$ Files\Microsoft$ Visual$ Studio\2022\Community\Common7\IDE\CommonExtensions\Microsoft\CMake\CMake\share\cmake-3.21\Modules\CMakeGenericSystem.cmake C$:\Program$ Files\Microsoft$ Visual$ Studio\2022\Community\Common7\IDE\CommonExtensions\Microsoft\CMake\CMake\share\cmake-3.21\Modules\CMakeInitializeConfigs.cmake C$:\Program$ Files\Microsoft$ Visual$ Studio\2022\Community\Common7\IDE\CommonExtensions\Microsoft\CMake\CMake\share\cmake-3.21\Modules\CMakeLanguageInformation.cmake C$:\Program$ Files\Microsoft$ Visual$ Studio\2022\Community\Common7\IDE\CommonExtensions\Microsoft\CMake\CMake\share\cmake-3.21\Modules\CMakeRCInformation.cmake C$:\Program$ Files\Microsoft$ Visual$ Studio\2022\Community\Common7\IDE\CommonExtensions\Microsoft\CMake\CMake\share\cmake-3.21\Modules\CMakeSystemSpecificInformation.cmake C$:\Program$ Files\Microsoft$ Visual$ Studio\2022\Community\Common7\IDE\CommonExtensions\Microsoft\CMake\CMake\share\cmake-3.21\Modules\CMakeSystemSpecificInitialize.cmake C$:\Program$ Files\Microsoft$ Visual$ Studio\2022\Community\Common7\IDE\CommonExtensions\Microsoft\CMake\CMake\share\cmake-3.21\Modules\Compiler\CMakeCommonCompilerMacros.cmake C$:\Program$ Files\Microsoft$ Visual$ Studio\2022\Community\Common7\IDE\CommonExtensions\Microsoft\CMake\CMake\share\cmake-3.21\Modules\Compiler\MSVC-ASM.cmake C$:\Program$ Files\Microsoft$ Visual$ Studio\2022\Community\Common7\IDE\CommonExtensions\Microsoft\CMake\CMake\share\cmake-3.21\Modules\Compiler\MSVC-C.cmake C$:\Program$ Files\Microsoft$ Visual$ Studio\2022\Community\Common7\IDE\CommonExtensions\Microsoft\CMake\CMake\share\cmake-3.21\Modules\Compiler\MSVC-CXX.cmake C$:\Program$ Files\Microsoft$ Visual$ Studio\2022\Community\Common7\IDE\CommonExtensions\Microsoft\CMake\CMake\share\cmake-3.21\Modules\Platform\Windows-MSVC-C.cmake C$:\Program$ Files\Microsoft$ Visual$ Studio\2022\Community\Common7\IDE\CommonExtensions\Microsoft\CMake\CMake\share\cmake-3.21\Modules\Platform\Windows-MSVC-CXX.cmake C$:\Program$ Files\Microsoft$ Visual$ Studio\2022\Community\Common7\IDE\CommonExtensions\Microsoft\CMake\CMake\share\cmake-3.21\Modules\Platform\Windows-MSVC.cmake C$:\Program$ Files\Microsoft$ Visual$ Studio\2022\Community\Common7\IDE\CommonExtensions\Microsoft\CMake\CMake\share\cmake-3.21\Modules\Platform\Windows.cmake C$:\Program$ Files\Microsoft$ Visual$ Studio\2022\Community\Common7\IDE\CommonExtensions\Microsoft\CMake\CMake\share\cmake-3.21\Modules\Platform\WindowsPaths.cmake CMakeCache.txt CMakeFiles\3.21.21080301-MSVC_2\CMakeASMCompiler.cmake CMakeFiles\3.21.21080301-MSVC_2\CMakeASM_NASMCompiler.cmake CMakeFiles\3.21.21080301-MSVC_2\CMakeCCompiler.cmake CMakeFiles\3.21.21080301-MSVC_2\CMakeCXXCompiler.cmake CMakeFiles\3.21.21080301-MSVC_2\CMakeRCCompiler.cmake CMakeFiles\3.21.21080301-MSVC_2\CMakeSystem.cmake
   pool = console
 
 
 #############################################
 # A missing CMake input file is not an error.
 
-build ..\..\..\CMakeLists.txt ..\..\..\kernel\CMakeLists.txt ..\..\..\libraries\CMakeLists.txt ..\..\..\libraries\ld\CMakeLists.txt ..\..\..\libraries\libapp\CMakeLists.txt ..\..\..\libraries\libc\CMakeLists.txt ..\..\..\libraries\libduck\CMakeLists.txt ..\..\..\libraries\libgraphics\CMakeLists.txt ..\..\..\libraries\libm\CMakeLists.txt ..\..\..\libraries\libpond\CMakeLists.txt ..\..\..\libraries\libriver\CMakeLists.txt ..\..\..\libraries\libsys\CMakeLists.txt ..\..\..\libraries\libterm\CMakeLists.txt ..\..\..\libraries\libui\CMakeLists.txt ..\..\..\ports\CMakeLists.txt ..\..\..\programs\CMakeLists.txt ..\..\..\programs\applications\4inarow\CMakeLists.txt ..\..\..\programs\applications\CMakeLists.txt ..\..\..\programs\applications\calculator\CMakeLists.txt ..\..\..\programs\applications\files\CMakeLists.txt ..\..\..\programs\applications\monitor\CMakeLists.txt ..\..\..\programs\applications\sandbar\CMakeLists.txt ..\..\..\programs\applications\terminal\CMakeLists.txt ..\..\..\programs\coreutils\CMakeLists.txt ..\..\..\programs\dsh\CMakeLists.txt ..\..\..\services\CMakeLists.txt ..\..\..\services\init\CMakeLists.txt ..\..\..\services\pond\CMakeLists.txt C$:\Program$ Files\Microsoft$ Visual$ Studio\2022\Community\Common7\IDE\CommonExtensions\Microsoft\CMake\CMake\share\cmake-3.21\Modules\CMakeASMCompiler.cmake.in C$:\Program$ Files\Microsoft$ Visual$ Studio\2022\Community\Common7\IDE\CommonExtensions\Microsoft\CMake\CMake\share\cmake-3.21\Modules\CMakeASMInformation.cmake C$:\Program$ Files\Microsoft$ Visual$ Studio\2022\Community\Common7\IDE\CommonExtensions\Microsoft\CMake\CMake\share\cmake-3.21\Modules\CMakeASM_NASMInformation.cmake C$:\Program$ Files\Microsoft$ Visual$ Studio\2022\Community\Common7\IDE\CommonExtensions\Microsoft\CMake\CMake\share\cmake-3.21\Modules\CMakeCInformation.cmake C$:\Program$ Files\Microsoft$ Visual$ Studio\2022\Community\Common7\IDE\CommonExtensions\Microsoft\CMake\CMake\share\cmake-3.21\Modules\CMakeCXXInformation.cmake C$:\Program$ Files\Microsoft$ Visual$ Studio\2022\Community\Common7\IDE\CommonExtensions\Microsoft\CMake\CMake\share\cmake-3.21\Modules\CMakeCommonLanguageInclude.cmake C$:\Program$ Files\Microsoft$ Visual$ Studio\2022\Community\Common7\IDE\CommonExtensions\Microsoft\CMake\CMake\share\cmake-3.21\Modules\CMakeCompilerIdDetection.cmake C$:\Program$ Files\Microsoft$ Visual$ Studio\2022\Community\Common7\IDE\CommonExtensions\Microsoft\CMake\CMake\share\cmake-3.21\Modules\CMakeDetermineASMCompiler.cmake C$:\Program$ Files\Microsoft$ Visual$ Studio\2022\Community\Common7\IDE\CommonExtensions\Microsoft\CMake\CMake\share\cmake-3.21\Modules\CMakeDetermineASM_NASMCompiler.cmake C$:\Program$ Files\Microsoft$ Visual$ Studio\2022\Community\Common7\IDE\CommonExtensions\Microsoft\CMake\CMake\share\cmake-3.21\Modules\CMakeDetermineCompiler.cmake C$:\Program$ Files\Microsoft$ Visual$ Studio\2022\Community\Common7\IDE\CommonExtensions\Microsoft\CMake\CMake\share\cmake-3.21\Modules\CMakeDetermineCompilerId.cmake C$:\Program$ Files\Microsoft$ Visual$ Studio\2022\Community\Common7\IDE\CommonExtensions\Microsoft\CMake\CMake\share\cmake-3.21\Modules\CMakeFindBinUtils.cmake C$:\Program$ Files\Microsoft$ Visual$ Studio\2022\Community\Common7\IDE\CommonExtensions\Microsoft\CMake\CMake\share\cmake-3.21\Modules\CMakeGenericSystem.cmake C$:\Program$ Files\Microsoft$ Visual$ Studio\2022\Community\Common7\IDE\CommonExtensions\Microsoft\CMake\CMake\share\cmake-3.21\Modules\CMakeInitializeConfigs.cmake C$:\Program$ Files\Microsoft$ Visual$ Studio\2022\Community\Common7\IDE\CommonExtensions\Microsoft\CMake\CMake\share\cmake-3.21\Modules\CMakeLanguageInformation.cmake C$:\Program$ Files\Microsoft$ Visual$ Studio\2022\Community\Common7\IDE\CommonExtensions\Microsoft\CMake\CMake\share\cmake-3.21\Modules\CMakeRCInformation.cmake C$:\Program$ Files\Microsoft$ Visual$ Studio\2022\Community\Common7\IDE\CommonExtensions\Microsoft\CMake\CMake\share\cmake-3.21\Modules\CMakeSystemSpecificInformation.cmake C$:\Program$ Files\Microsoft$ Visual$ Studio\2022\Community\Common7\IDE\CommonExtensions\Microsoft\CMake\CMake\share\cmake-3.21\Modules\CMakeSystemSpecificInitialize.cmake C$:\Program$ Files\Microsoft$ Visual$ Studio\2022\Community\Common7\IDE\CommonExtensions\Microsoft\CMake\CMake\share\cmake-3.21\Modules\CMakeTestASMCompiler.cmake C$:\Program$ Files\Microsoft$ Visual$ Studio\2022\Community\Common7\IDE\CommonExtensions\Microsoft\CMake\CMake\share\cmake-3.21\Modules\CMakeTestASM_NASMCompiler.cmake C$:\Program$ Files\Microsoft$ Visual$ Studio\2022\Community\Common7\IDE\CommonExtensions\Microsoft\CMake\CMake\share\cmake-3.21\Modules\Compiler\CMakeCommonCompilerMacros.cmake C$:\Program$ Files\Microsoft$ Visual$ Studio\2022\Community\Common7\IDE\CommonExtensions\Microsoft\CMake\CMake\share\cmake-3.21\Modules\Compiler\MSVC-ASM.cmake C$:\Program$ Files\Microsoft$ Visual$ Studio\2022\Community\Common7\IDE\CommonExtensions\Microsoft\CMake\CMake\share\cmake-3.21\Modules\Compiler\MSVC-C.cmake C$:\Program$ Files\Microsoft$ Visual$ Studio\2022\Community\Common7\IDE\CommonExtensions\Microsoft\CMake\CMake\share\cmake-3.21\Modules\Compiler\MSVC-CXX.cmake C$:\Program$ Files\Microsoft$ Visual$ Studio\2022\Community\Common7\IDE\CommonExtensions\Microsoft\CMake\CMake\share\cmake-3.21\Modules\Platform\Windows-MSVC-C.cmake C$:\Program$ Files\Microsoft$ Visual$ Studio\2022\Community\Common7\IDE\CommonExtensions\Microsoft\CMake\CMake\share\cmake-3.21\Modules\Platform\Windows-MSVC-CXX.cmake C$:\Program$ Files\Microsoft$ Visual$ Studio\2022\Community\Common7\IDE\CommonExtensions\Microsoft\CMake\CMake\share\cmake-3.21\Modules\Platform\Windows-MSVC.cmake C$:\Program$ Files\Microsoft$ Visual$ Studio\2022\Community\Common7\IDE\CommonExtensions\Microsoft\CMake\CMake\share\cmake-3.21\Modules\Platform\Windows.cmake C$:\Program$ Files\Microsoft$ Visual$ Studio\2022\Community\Common7\IDE\CommonExtensions\Microsoft\CMake\CMake\share\cmake-3.21\Modules\Platform\WindowsPaths.cmake CMakeCache.txt CMakeFiles\3.21.21080301-MSVC_2\CMakeASMCompiler.cmake CMakeFiles\3.21.21080301-MSVC_2\CMakeASM_NASMCompiler.cmake CMakeFiles\3.21.21080301-MSVC_2\CMakeCCompiler.cmake CMakeFiles\3.21.21080301-MSVC_2\CMakeCXXCompiler.cmake CMakeFiles\3.21.21080301-MSVC_2\CMakeRCCompiler.cmake CMakeFiles\3.21.21080301-MSVC_2\CMakeSystem.cmake: phony
+build ..\..\..\CMakeLists.txt ..\..\..\kernel\CMakeLists.txt ..\..\..\libraries\CMakeLists.txt ..\..\..\libraries\ld\CMakeLists.txt ..\..\..\libraries\libapp\CMakeLists.txt ..\..\..\libraries\libc\CMakeLists.txt ..\..\..\libraries\libduck\CMakeLists.txt ..\..\..\libraries\libgraphics\CMakeLists.txt ..\..\..\libraries\libm\CMakeLists.txt ..\..\..\libraries\libpond\CMakeLists.txt ..\..\..\libraries\libriver\CMakeLists.txt ..\..\..\libraries\libsys\CMakeLists.txt ..\..\..\libraries\libterm\CMakeLists.txt ..\..\..\libraries\libui\CMakeLists.txt ..\..\..\ports\CMakeLists.txt ..\..\..\programs\CMakeLists.txt ..\..\..\programs\applications\4inarow\CMakeLists.txt ..\..\..\programs\applications\CMakeLists.txt ..\..\..\programs\applications\calculator\CMakeLists.txt ..\..\..\programs\applications\files\CMakeLists.txt ..\..\..\programs\applications\monitor\CMakeLists.txt ..\..\..\programs\applications\sandbar\CMakeLists.txt ..\..\..\programs\applications\settings\CMakeLists.txt ..\..\..\programs\applications\terminal\CMakeLists.txt ..\..\..\programs\coreutils\CMakeLists.txt ..\..\..\programs\dsh\CMakeLists.txt ..\..\..\services\CMakeLists.txt ..\..\..\services\init\CMakeLists.txt ..\..\..\services\pond\CMakeLists.txt C$:\Program$ Files\Microsoft$ Visual$ Studio\2022\Community\Common7\IDE\CommonExtensions\Microsoft\CMake\CMake\share\cmake-3.21\Modules\CMakeASMInformation.cmake C$:\Program$ Files\Microsoft$ Visual$ Studio\2022\Community\Common7\IDE\CommonExtensions\Microsoft\CMake\CMake\share\cmake-3.21\Modules\CMakeASM_NASMInformation.cmake C$:\Program$ Files\Microsoft$ Visual$ Studio\2022\Community\Common7\IDE\CommonExtensions\Microsoft\CMake\CMake\share\cmake-3.21\Modules\CMakeCInformation.cmake C$:\Program$ Files\Microsoft$ Visual$ Studio\2022\Community\Common7\IDE\CommonExtensions\Microsoft\CMake\CMake\share\cmake-3.21\Modules\CMakeCXXInformation.cmake C$:\Program$ Files\Microsoft$ Visual$ Studio\2022\Community\Common7\IDE\CommonExtensions\Microsoft\CMake\CMake\share\cmake-3.21\Modules\CMakeCommonLanguageInclude.cmake C$:\Program$ Files\Microsoft$ Visual$ Studio\2022\Community\Common7\IDE\CommonExtensions\Microsoft\CMake\CMake\share\cmake-3.21\Modules\CMakeGenericSystem.cmake C$:\Program$ Files\Microsoft$ Visual$ Studio\2022\Community\Common7\IDE\CommonExtensions\Microsoft\CMake\CMake\share\cmake-3.21\Modules\CMakeInitializeConfigs.cmake C$:\Program$ Files\Microsoft$ Visual$ Studio\2022\Community\Common7\IDE\CommonExtensions\Microsoft\CMake\CMake\share\cmake-3.21\Modules\CMakeLanguageInformation.cmake C$:\Program$ Files\Microsoft$ Visual$ Studio\2022\Community\Common7\IDE\CommonExtensions\Microsoft\CMake\CMake\share\cmake-3.21\Modules\CMakeRCInformation.cmake C$:\Program$ Files\Microsoft$ Visual$ Studio\2022\Community\Common7\IDE\CommonExtensions\Microsoft\CMake\CMake\share\cmake-3.21\Modules\CMakeSystemSpecificInformation.cmake C$:\Program$ Files\Microsoft$ Visual$ Studio\2022\Community\Common7\IDE\CommonExtensions\Microsoft\CMake\CMake\share\cmake-3.21\Modules\CMakeSystemSpecificInitialize.cmake C$:\Program$ Files\Microsoft$ Visual$ Studio\2022\Community\Common7\IDE\CommonExtensions\Microsoft\CMake\CMake\share\cmake-3.21\Modules\Compiler\CMakeCommonCompilerMacros.cmake C$:\Program$ Files\Microsoft$ Visual$ Studio\2022\Community\Common7\IDE\CommonExtensions\Microsoft\CMake\CMake\share\cmake-3.21\Modules\Compiler\MSVC-ASM.cmake C$:\Program$ Files\Microsoft$ Visual$ Studio\2022\Community\Common7\IDE\CommonExtensions\Microsoft\CMake\CMake\share\cmake-3.21\Modules\Compiler\MSVC-C.cmake C$:\Program$ Files\Microsoft$ Visual$ Studio\2022\Community\Common7\IDE\CommonExtensions\Microsoft\CMake\CMake\share\cmake-3.21\Modules\Compiler\MSVC-CXX.cmake C$:\Program$ Files\Microsoft$ Visual$ Studio\2022\Community\Common7\IDE\CommonExtensions\Microsoft\CMake\CMake\share\cmake-3.21\Modules\Platform\Windows-MSVC-C.cmake C$:\Program$ Files\Microsoft$ Visual$ Studio\2022\Community\Common7\IDE\CommonExtensions\Microsoft\CMake\CMake\share\cmake-3.21\Modules\Platform\Windows-MSVC-CXX.cmake C$:\Program$ Files\Microsoft$ Visual$ Studio\2022\Community\Common7\IDE\CommonExtensions\Microsoft\CMake\CMake\share\cmake-3.21\Modules\Platform\Windows-MSVC.cmake C$:\Program$ Files\Microsoft$ Visual$ Studio\2022\Community\Common7\IDE\CommonExtensions\Microsoft\CMake\CMake\share\cmake-3.21\Modules\Platform\Windows.cmake C$:\Program$ Files\Microsoft$ Visual$ Studio\2022\Community\Common7\IDE\CommonExtensions\Microsoft\CMake\CMake\share\cmake-3.21\Modules\Platform\WindowsPaths.cmake CMakeCache.txt CMakeFiles\3.21.21080301-MSVC_2\CMakeASMCompiler.cmake CMakeFiles\3.21.21080301-MSVC_2\CMakeASM_NASMCompiler.cmake CMakeFiles\3.21.21080301-MSVC_2\CMakeCCompiler.cmake CMakeFiles\3.21.21080301-MSVC_2\CMakeCXXCompiler.cmake CMakeFiles\3.21.21080301-MSVC_2\CMakeRCCompiler.cmake CMakeFiles\3.21.21080301-MSVC_2\CMakeSystem.cmake: phony
 
 
 #############################################
