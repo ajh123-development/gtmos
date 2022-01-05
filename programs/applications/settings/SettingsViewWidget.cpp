@@ -33,7 +33,7 @@ SettingsViewWidget::SettingsViewWidget(const Duck::Path& path): ListView(GRID) {
 }
 
 Widget::Ptr SettingsViewWidget::create_entry(int index) {
-	if((!index) && path.parent != root) {
+	if((!index) && path.parent().string() != root.string()) {
 		auto btn = UI::Button::make("<---");
 		btn->on_released = [&] {
 			set_directory(path.parent());
