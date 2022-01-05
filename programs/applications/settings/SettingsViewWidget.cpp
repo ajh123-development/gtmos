@@ -33,22 +33,21 @@ SettingsViewWidget::SettingsViewWidget(const Duck::Path& path): ListView(GRID) {
 }
 
 Widget::Ptr SettingsViewWidget::create_entry(int index) {
-	if(!index) {
-		
-		auto btn = UI::Button::make("<---");
-		btn->on_released = [&] {
-			if (path.parent().string() == root.string()) {
+	if (path.parent().string() == root.string()) {
+		if (!index) {
+			auto btn = UI::Button::make("<---");
+			btn->on_released = [&] {
 				set_directory(path.parent());
 				return true;
-			}
-			return false;
-		};
-		return btn;
+			};
+			return btn;
+		}
+
+		auto& entry = entries[index - 1];
+
+		return SettingsWidget::make(entry, self());
 	}
-
-	auto& entry = entries[index - 1];
-
-	return SettingsWidget::make(entry, self());
+	return nullptr;
 }
 
 Gfx::Dimensions SettingsViewWidget::preferred_item_dimensions() {
