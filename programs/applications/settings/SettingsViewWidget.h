@@ -39,6 +39,7 @@ private:
 	SettingsViewWidget(const Duck::Path& path);
 
 	Duck::Path path;
+	Duck::Path root;
 	std::vector<Duck::DirectoryEntry> entries;
 	bool inited = false;
 };

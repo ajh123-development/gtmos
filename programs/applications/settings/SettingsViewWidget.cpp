@@ -28,11 +28,12 @@ using namespace UI;
 
 SettingsViewWidget::SettingsViewWidget(const Duck::Path& path): ListView(GRID) {
 	set_directory(path);
+	root = path;
 	inited = true;
 }
 
 Widget::Ptr SettingsViewWidget::create_entry(int index) {
-	if(!index) {
+	if((!index) && path.parent != root) {
 		auto btn = UI::Button::make("<---");
 		btn->on_released = [&] {
 			set_directory(path.parent());
