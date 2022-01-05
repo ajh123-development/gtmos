@@ -24,7 +24,7 @@ int main(int argc, char** argv, char** envp) {
 	UI::init(argv, envp);
 
 	auto window = UI::Window::create();
-	auto dir_widget = SettingsViewWidget::make("/");
+	auto dir_widget = SettingsViewWidget::make(UI::app_info().resource_path());
 	window->set_contents(dir_widget);
 	window->set_resizable(true);
 	window->set_title("Settings");
