@@ -1,5 +1,5 @@
-# duckOS
-### A hobby operating system
+# GTMOS
+### A hobby operating system based of [duckOS](https://github.com/byteduck/duckOS)
 
 A hobby UNIX-like OS with a graphical window manager for x86 computers.
 
