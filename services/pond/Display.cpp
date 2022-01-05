@@ -96,7 +96,7 @@ void Display::clear(uint32_t color) {
 void Display::set_root_window(Window* window) {
 	_root_window = window;
 
-	FILE* wallpaper = fopen("/usr/share/wallpapers/duck.png", "re");
+	FILE* wallpaper = fopen("/usr/share/wallpapers/black.png", "re");
 	if(!wallpaper) {
 		perror("Failed to open wallpaper");
 		return;
