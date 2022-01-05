@@ -27,8 +27,8 @@
 using namespace UI;
 
 SettingsViewWidget::SettingsViewWidget(const Duck::Path& path): ListView(GRID) {
-	set_directory(path);
 	root = path;
+	set_directory(path);
 	inited = true;
 }
 
