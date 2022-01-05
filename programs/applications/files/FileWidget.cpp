@@ -24,6 +24,8 @@
 
 using namespace UI;
 
+int clicks = 0;
+
 FileWidget::FileWidget(const Duck::DirectoryEntry& entry, DirectoryWidget::ArgPtr dir_widget): BoxLayout(VERTICAL), entry(entry), dir_widget(dir_widget) {
 	auto image = UI::app_info().resource_image(entry.is_directory() ? "folder.png" : "file.png");
 	add_child(UI::Image::make(*image.get()));
@@ -31,10 +33,12 @@ FileWidget::FileWidget(const Duck::DirectoryEntry& entry, DirectoryWidget::ArgPt
 }
 
 bool FileWidget::on_mouse_button(Pond::MouseButtonEvent evt) {
-	if((evt.old_buttons & POND_MOUSE1) && !(evt.new_buttons & POND_MOUSE1)) {
+	if((evt.old_buttons & POND_MOUSE1) && !(evt.new_buttons & POND_MOUSE1)) && clicks == 2) {
 		if(entry.is_directory())
 			dir_widget->set_directory(entry.path());
+		clicks = 0;
 		return true;
 	}
+	clicks++;
 	return false;
 }
