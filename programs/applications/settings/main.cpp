@@ -1,12 +1,12 @@
 /*
-	This file is part of duckOS.
+	This file is part of GTMOS.
 
-	duckOS is free software: you can redistribute it and/or modify
+	GTMOS is free software: you can redistribute it and/or modify
 	it under the terms of the GNU General Public License as published by
 	the Free Software Foundation, either version 3 of the License, or
 	(at your option) any later version.
 
-	duckOS is distributed in the hope that it will be useful,
+	GTMOS is distributed in the hope that it will be useful,
 	but WITHOUT ANY WARRANTY; without even the implied warranty of
 	MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
 	GNU General Public License for more details.
@@ -14,11 +14,12 @@
 	You should have received a copy of the GNU General Public License
 	along with duckOS.  If not, see <https://www.gnu.org/licenses/>.
 
-	Copyright (c) Byteduck 2016-2021. All rights reserved.
+	Copyright (c) ajh123-development 2016-2021. All rights reserved.
 */
 
 #include <libui/libui.h>
 #include "SettingsWidget.h"
+#include <libduck/Log.h>
 
 App::Info _app_info;
 
@@ -33,6 +34,7 @@ int main(int argc, char** argv, char** envp) {
 
 	const Duck::Path path = _app_info.base_path();
 	const char* path_str = path.basename().c_str();
+	Duck::Log::info("Path at %s", path_str);
 
 	auto dir_widget = SettingsViewWidget::make(path_str);
 	window->set_contents(dir_widget);
