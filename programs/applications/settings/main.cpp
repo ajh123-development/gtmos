@@ -20,11 +20,17 @@
 #include <libui/libui.h>
 #include "SettingsWidget.h"
 
+App::Info _app_info;
+
 int main(int argc, char** argv, char** envp) {
 	UI::init(argv, envp);
 
+	auto app_res = App::Info::from_current_app();
+	if (app_res.has_value())
+		_app_info = app_res.value();
+
 	auto window = UI::Window::create();
-	const Duck::Path& path = UI::app_info().from_current_app();
+	const Duck::Path& path = _app_info.base_path;
 	auto dir_widget = SettingsViewWidget::make(path.string);
 	window->set_contents(dir_widget);
 	window->set_resizable(true);
