@@ -23,6 +23,7 @@
 #include <libduck/Log.h>
 #include <system_error>
 #include "SettingsWidget.h"
+#include <libduck/Log.h>
 
 using namespace UI;
 
@@ -33,7 +34,7 @@ SettingsViewWidget::SettingsViewWidget(const Duck::Path& path): ListView(GRID) {
 }
 
 Widget::Ptr SettingsViewWidget::create_entry(int index) {
-	if (path.parent().string() != root.string()) {
+	if (path.string() != root.string()) {
 		if (!index) {
 			auto btn = UI::Button::make("<---");
 			btn->on_released = [&] {
@@ -42,12 +43,9 @@ Widget::Ptr SettingsViewWidget::create_entry(int index) {
 			};
 			return btn;
 		}
-
-		auto& entry = entries[index - 1];
-
-		return SettingsWidget::make(entry, self());
 	}
-	return nullptr;
+	auto& entry = entries[index - 1];
+	return SettingsWidget::make(entry, self());
 }
 
 Gfx::Dimensions SettingsViewWidget::preferred_item_dimensions() {
