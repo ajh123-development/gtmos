@@ -30,7 +30,7 @@ protected:
 	bool on_mouse_button(Pond::MouseButtonEvent evt) override;
 
 private:
-	SettingsWidget(const Duck::DirectoryEntry& dir_entry, DirectoryWidget::ArgPtr dir_widget);
+	SettingsWidget(const Duck::DirectoryEntry& dir_entry, SettingsViewWidget::ArgPtr dir_widget);
 
 	Duck::DirectoryEntry entry;
 	SettingsViewWidget::Ptr dir_widget;
