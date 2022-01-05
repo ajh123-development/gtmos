@@ -24,7 +24,7 @@ int main(int argc, char** argv, char** envp) {
 	UI::init(argv, envp);
 
 	auto window = UI::Window::create();
-	const Duck::Path& path = UI::app_info().resource_path();
+	const Duck::Path& path = UI::app_info().from_current_app();
 	auto dir_widget = SettingsViewWidget::make(path.string);
 	window->set_contents(dir_widget);
 	window->set_resizable(true);
