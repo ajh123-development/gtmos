@@ -23,6 +23,7 @@
 #include <libduck/Log.h>
 #include <system_error>
 #include "SettingsWidget.h"
+#include <libduck/Log.h>
 
 using namespace UI;
 
@@ -38,6 +39,7 @@ Widget::Ptr SettingsViewWidget::create_entry(int index) {
 		auto btn = UI::Button::make("<---");
 		btn->on_released = [&] {
 			if (path.parent().string() != root.string()) {
+				Duck::Log::info("Current settings view at ", root.string());
 				set_directory(path.parent());
 				return true;
 			}
