@@ -34,7 +34,7 @@ FileWidget::FileWidget(const Duck::DirectoryEntry& entry, DirectoryWidget::ArgPt
 
 bool FileWidget::on_mouse_button(Pond::MouseButtonEvent evt) {
 	if((evt.old_buttons & POND_MOUSE1) && !(evt.new_buttons & POND_MOUSE1)) {
-		if (click == 2) {
+		if (clicks == 2) {
 			if (entry.is_directory())
 				dir_widget->set_directory(entry.path());
 			return true;
