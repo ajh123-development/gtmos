@@ -34,17 +34,19 @@ SettingsViewWidget::SettingsViewWidget(const Duck::Path& path): ListView(GRID) {
 }
 
 Widget::Ptr SettingsViewWidget::create_entry(int index) {
-	if (path.parent().string() == root.string()) {
-		if (!index) {
-			auto btn = UI::Button::make("<---");
-			btn->on_released = [&] {
+	
+	if (!index) {
+		auto btn = UI::Button::make("<---");
+		btn->on_released = [&] {
+			if (path.parent().string() == root.string()) {
 				set_directory(path);
 				return true;
-			};
-			return btn;
-		}
-		return nullptr;
+			}
+			return false;
+		};
+		return btn;
 	}
+
 	auto& entry = entries[index - 1];
 	return SettingsWidget::make(entry, self());
 }
