@@ -67,8 +67,11 @@ void SettingsViewWidget::set_directory(const Duck::Path& new_path) {
 	path = new_path;
 	entries.clear();
 
-	for(auto& entry : dirs_res.value())
-		entries.push_back(entry);
+	for(auto& entry : dirs_res.value()){
+		if (path.string() == root.string()) {
+			entries.push_back(entry);
+		}
+	}
 
 	if(inited) {
 		update_data();
