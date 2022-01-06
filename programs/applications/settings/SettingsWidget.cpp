@@ -27,7 +27,7 @@ using namespace UI;
 
 SettingsWidget::SettingsWidget(const Duck::DirectoryEntry& entry, SettingsViewWidget::ArgPtr dir_widget): BoxLayout(VERTICAL), entry(entry), dir_widget(dir_widget) {
 	auto image = UI::app_info().resource_image("file.png");
-	auto cfg_res = Duck::Config::read_from(entry.name());
+	auto cfg_res = Duck::Config::read_from(entry.path());
 
 	if(!cfg_res.is_error()) {
 		auto& cfg = cfg_res.value();
