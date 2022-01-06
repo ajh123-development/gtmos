@@ -43,6 +43,7 @@ Widget::Ptr SettingsViewWidget::create_entry(int index) {
 			};
 			return btn;
 		}
+		return nullptr;
 	}
 	auto& entry = entries[index - 1];
 	return SettingsWidget::make(entry, self());
