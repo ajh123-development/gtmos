@@ -21,13 +21,25 @@
 #include <libui/widget/Label.h>
 #include <libui/widget/Image.h>
 #include <libui/libui.h>
+#include <libduck/Config.h>
 
 using namespace UI;
 
 SettingsWidget::SettingsWidget(const Duck::DirectoryEntry& entry, SettingsViewWidget::ArgPtr dir_widget): BoxLayout(VERTICAL), entry(entry), dir_widget(dir_widget) {
-	auto image = UI::app_info().resource_image(entry.is_directory() ? "folder.png" : "file.png");
-	add_child(UI::Image::make(*image.get()));
-	add_child(UI::Label::make(entry.name()));
+	auto image = UI::app_info().resource_image("file.png");
+	auto cfg_res = Duck::Config::read_from(entry.name());
+
+	if(!cfg_res.is_error()) {
+		auto& cfg = cfg_res.value();
+		if(cfg.has_section("SettingsView"))
+			Theme::load_config(cfg["SettingsView"]);
+			if(!cfg["SettingsView"]["name"].empty())
+				add_child(UI::Image::make(*image.get()));
+				add_child(UI::Label::make(cfg["SettingsView"]["name"]));
+	} else {
+		add_child(UI::Image::make(*image.get()));
+		add_child(UI::Label::make(entry.name()));
+	}
 }
 
 bool SettingsWidget::on_mouse_button(Pond::MouseButtonEvent evt) {
