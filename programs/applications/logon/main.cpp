@@ -32,7 +32,7 @@ void sigchld_handler(int sig) {
 }
 
 //UI Event handler
-void handler(void)
+void handler()
 {
 	Log::info("Hi?");	
 	//if(UI::pond_context->has_event()) {
