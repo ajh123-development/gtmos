@@ -30,5 +30,5 @@ public:
 	UI::Widget::Ptr create_login();
 
 private:
-	LogonWidget();
+	LogonWidget(UI::Window::Ptr window);
 };

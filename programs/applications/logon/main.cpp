@@ -42,7 +42,7 @@ int main(int argc, char** argv, char** envp) {
 
 	//Make window
 	auto window = UI::Window::create();
-	auto log_widget = LogonWidget::make();
+	auto log_widget = LogonWidget::make(window);
 
 	window->set_contents(log_widget);
 	window->set_resizable(true);
