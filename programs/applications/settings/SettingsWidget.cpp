@@ -54,7 +54,10 @@ SettingsWidget::SettingsWidget(const Duck::DirectoryEntry& entry, SettingsViewWi
 			Theme::load_config(cfg["SettingsView"]);
 			if(!cfg["SettingsView"]["name"].empty())
 				add_child(UI::Image::make(*image.get()));
-				add_child(UI::Label::make(cfg["SettingsView"]["name"]));
+
+				std::vector<std::string> names = split(cfg["SettingsView"]["name"], '\n');
+				for(std::string name : names) 
+					add_child(UI::Label::make(name));
 	} else {
 		add_child(UI::Image::make(*image.get()));
 		add_child(UI::Label::make(entry.name()));
