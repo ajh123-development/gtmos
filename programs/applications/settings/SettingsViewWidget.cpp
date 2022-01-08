@@ -52,7 +52,7 @@ Widget::Ptr SettingsViewWidget::create_entry(int index) {
 }
 
 Gfx::Dimensions SettingsViewWidget::preferred_item_dimensions() {
-	return { 96, 96 };
+	return { 64, 64 };
 }
 
 int SettingsViewWidget::num_items() {
