@@ -60,6 +60,7 @@ namespace UI {
 		void resize_to_contents();
 		void set_uses_alpha(bool uses_alpha);
 		void set_decorated(bool decorated);
+		void set_closeable(bool closeable);
 
 		///Pond
 		Pond::Window* pond_window();
@@ -91,6 +92,7 @@ namespace UI {
 		Gfx::Point _mouse;
 		Gfx::Point _abs_mouse;
 		bool _decorated = true;
+		bool _closeable = true;
 		bool _uses_alpha = false;
 		bool _resizable = false;
 		bool _needs_repaint = false;
