@@ -63,12 +63,7 @@ int main(int argc, char** argv, char** envp) {
 	window->resize({300, 300});
 	window->show();
 
-	// //Event handlers
-	// while(UI::pond_context->has_event()) {
-	// 	Pond::Event event = UI::pond_context->next_event();
-
-	//Run event loop
-	UI::run();
+	UI::run(handler);
 
 	return 0;
 }
