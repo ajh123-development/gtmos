@@ -17,7 +17,6 @@
 	Copyright (c) Byteduck 2016-2021. All rights reserved.
 */
 
-#include <libui/libui.h>
 #include <libapp/App.h>
 #include <csignal>
 #include <sys/wait.h>
@@ -48,9 +47,6 @@ int main(int argc, char** argv, char** envp) {
 	window->set_resizable(true);
 	window->set_title("Logon");
 	window->resize({300, 300});
-	window->show();
-
-	//Show the window
 	window->show();
 
 	//Run event loop
