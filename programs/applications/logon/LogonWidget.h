@@ -23,8 +23,7 @@ class LogonWidget {
 public:
 	WIDGET_DEF(LogonWidget)
 
-	//ListView
-	UI::Widget::Ptr create_login() override;
+	UI::Widget::Ptr create_login();
 
 private:
 	LogonWidget();
