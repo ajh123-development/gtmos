@@ -23,24 +23,6 @@
 #include <libui/libui.h>
 #include <libduck/Config.h>
 #include <string>
-#include <sstream>
-#include <vector>
-#include <iterator>
-
-template <typename Out>
-void split(const std::string &s, char delim, Out result) {
-    std::istringstream iss(s);
-    std::string item;
-    while (std::getline(iss, item, delim)) {
-        *result++ = item;
-    }
-}
-
-std::vector<std::string> split(const std::string &s, char delim) {
-    std::vector<std::string> elems;
-    split(s, delim, std::back_inserter(elems));
-    return elems;
-}
 
 using namespace UI;
 
@@ -55,9 +37,17 @@ SettingsWidget::SettingsWidget(const Duck::DirectoryEntry& entry, SettingsViewWi
 			if(!cfg["SettingsView"]["name"].empty())
 				add_child(UI::Image::make(*image.get()));
 
-				std::vector<std::string> names = split(cfg["SettingsView"]["name"], '\n');
-				for(std::string name : names) 
-					add_child(UI::Label::make(name));
+				std::string s = cfg["SettingsView"]["name"];
+				std::string delimiter = "\n";
+
+				size_t pos = 0;
+				std::string token;
+				while ((pos = s.find(delimiter)) != std::string::npos) {
+					token = s.substr(0, pos);
+					add_child(UI::Label::make(token));
+					s.erase(0, pos + delimiter.length());
+				}
+				add_child(UI::Label::make(s));	
 	} else {
 		add_child(UI::Image::make(*image.get()));
 		add_child(UI::Label::make(entry.name()));
