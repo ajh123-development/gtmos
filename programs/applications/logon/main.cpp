@@ -19,7 +19,6 @@
 
 #include <libpond/Event.h>
 #include <libapp/App.h>
-#include <libduck/Log.h>
 #include <csignal>
 #include <sys/wait.h>
 #include "LogonWidget.h"
@@ -34,10 +33,7 @@ void sigchld_handler(int sig) {
 //UI Event handler
 void handler()
 {
-	if(UI::pond_context->has_event()) {
-		Pond::Event event = UI::pond_context->next_event();	
-		Log::info(event.key.type);	
-	}
+	Log::info("Hi?");	
 }
 
 int main(int argc, char** argv, char** envp) {
@@ -67,8 +63,12 @@ int main(int argc, char** argv, char** envp) {
 	window->resize({300, 300});
 	window->show();
 
+	// //Event handlers
+	// while(UI::pond_context->has_event()) {
+	// 	Pond::Event event = UI::pond_context->next_event();
+
 	//Run event loop
-	UI::run(handler);
+	UI::run();
 
 	return 0;
 }
