@@ -22,7 +22,6 @@
 #include <libui/widget/Image.h>
 #include <libui/libui.h>
 #include <libduck/Config.h>
-#include <libduck/>
 #include <string>
 #include <sstream>
 #include <vector>
