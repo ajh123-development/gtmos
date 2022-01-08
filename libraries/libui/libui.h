@@ -39,8 +39,7 @@ namespace UI {
 
 	void init(char** argv, char** envp);
 
-	template<typename Callback>
-	void run(Callback callback);
+	void run(void (*callback)(void));
 	void run();
 
 	void update(int timeout);

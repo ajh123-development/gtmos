@@ -33,6 +33,7 @@ std::map<int, std::shared_ptr<Window>> windows;
 int num_windows = 0;
 bool should_exit = false;
 App::Info _app_info;
+std::vector<void (*)(void)> callbacks;
 
 void handle_pond_events();
 
@@ -129,12 +130,12 @@ void handle_pond_events() {
 	}
 }
 
-template<typename Callback>
-void UI::run(Callback callback) {
+void UI::run(void (*callback)(void)) {
 	try {
+		callbacks.push_back(callback);
 		while (!should_exit) {
 			update(-1);
-			callback();
+			(*callback)(void);
 		}
 	} catch(const UI::UIException& e) {
 		fprintf(stderr, "UIException in UI loop: %s\n", e.what());
