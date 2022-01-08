@@ -30,7 +30,7 @@ fi
 
 SYSTEM="$(uname -s)"
 DU_COMMAND="du"
-IMAGE_NAME="duckOS.img"
+IMAGE_NAME="gtmos.img"
 IMAGE_EXTRASIZE="100000"
 
 if [ "$SYSTEM" = "Darwin" ]; then
