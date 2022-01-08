@@ -18,8 +18,7 @@
 */
 
 #include "LogonWidget.h"
-#include <libui/widget/Button.h>
-#include <libui/widget/Label.h>
+#include <libui/libui.h>
 #include <libduck/Log.h>
 #include <system_error>
 
