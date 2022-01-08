@@ -25,19 +25,15 @@
 
 using Duck::Log;
 
-void sigchld_handler(int sig) {
-	int dummy;
-	wait(&dummy);
-}
-
-//UI Event handler
+//Event handlers
 void handler()
 {
 	Log::info("Hi?");	
-	//if(UI::pond_context->has_event()) {
-	//	Pond::Event event = UI::pond_context->next_event();	
-	//	Log::info(event.key.type);	
-	//}
+}
+
+void sigchld_handler(int sig) {
+	int dummy;
+	wait(&dummy);
 }
 
 int main(int argc, char** argv, char** envp) {
