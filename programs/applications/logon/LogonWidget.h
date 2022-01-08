@@ -19,12 +19,12 @@
 
 #pragma once
 
-#include <libui/widget/layout/BoxLayout.h>
+#include <libui/widget/Widget.h>
 #include <libui/widget/Button.h>
 #include <libui/widget/Label.h>
 #include <libui/libui.h>
 
-class LogonWidget: public UI::BoxLayout {
+class LogonWidget: public UI::Widget {
 public:
 	WIDGET_DEF(LogonWidget)
 

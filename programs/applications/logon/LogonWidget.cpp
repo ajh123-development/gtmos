@@ -18,13 +18,12 @@
 */
 
 #include "LogonWidget.h"
-#include <libui/libui.h>
 #include <libduck/Log.h>
 #include <system_error>
 
 using namespace UI;
 
-LogonWidget::LogonWidget(UI::Window::Ptr window): BoxLayout(VERTICAL) {
+LogonWidget::LogonWidget(UI::Window::Ptr window) {
 	UI::Label::Ptr display = Label::make("0");
 	display->set_alignment(UI::CENTER, UI::END);
 	display->set_font(UI::pond_context->get_font("gohu-14"));
