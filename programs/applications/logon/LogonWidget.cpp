@@ -25,8 +25,13 @@
 
 using namespace UI;
 
-LogonWidget::LogonWidget() {
-	create_login();
+LogonWidget::LogonWidget(): BoxLayout(VERTICAL) {
+	UI::Label::Ptr display = Label::make("0");
+	display->set_alignment(UI::CENTER, UI::END);
+	display->set_font(UI::pond_context->get_font("gohu-14"));
+	display->set_padding({8, 8});
+	add_child(display);
+	add_child(create_login());
 }
 
 Widget::Ptr LogonWidget::create_login() {
