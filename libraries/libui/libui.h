@@ -38,7 +38,10 @@ namespace UI {
 	extern Pond::Context* pond_context;
 
 	void init(char** argv, char** envp);
-	void run();
+
+	template<typename Callback>
+	void run(Callback callback);
+
 	void update(int timeout);
 	bool ready_to_exit();
 
