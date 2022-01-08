@@ -30,6 +30,11 @@ void sigchld_handler(int sig) {
 }
 
 int main(int argc, char** argv, char** envp) {
+	if(getpid() != 5) {
+		printf("pid != 5. Exiting.\n");
+		return -1;
+	}
+
 	//Signal handler
 	signal(SIGCHLD, sigchld_handler);
 
