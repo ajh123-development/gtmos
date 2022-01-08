@@ -1,14 +1,3 @@
-#include <csignal>
-#include <cstdio>
-#include <unistd.h>
-#include <sys/wait.h>
-#include <cerrno>
-#include <cstring>
-#include <cstdlib>
-#include <libduck/Config.h>
-#include <sstream>
-#include <vector>
-
 /*
     This file is part of duckOS.
     
@@ -28,7 +17,18 @@
     Copyright (c) Byteduck 2016-2020. All rights reserved.
 */
 
-// The init system for duckOS.
+#include <csignal>
+#include <cstdio>
+#include <unistd.h>
+#include <sys/wait.h>
+#include <cerrno>
+#include <cstring>
+#include <cstdlib>
+//#include <libduck/Config.h>
+#include <sstream>
+#include <vector>
+
+// The init system for duckOS and GTMOS.
 
 #include <libduck/Log.h>
 
@@ -43,15 +43,15 @@ int main(int argc, char** argv, char** envp) {
 	setsid();
 	Log::success("Welcome to GTMOS!");
 
-	//Read config file
-	auto cfg_res = Config::read_from("/etc/init.conf");
-	if(cfg_res.is_error()) {
-		Log::crit("Failed to read /etc/init.conf: ", strerror(errno));
-		exit(errno);
-	}
-	auto& cfg = cfg_res.value();
+	// //Read config file
+	// auto cfg_res = Config::read_from("/etc/init.conf");
+	// if(cfg_res.is_error()) {
+	// 	Log::crit("Failed to read /etc/init.conf: ", strerror(errno));
+	// 	exit(errno);
+	// }
+	// auto& cfg = cfg_res.value();
 
-	std::string exec = cfg["init"]["exec"];
+	std::string exec = "/bin/pond";//cfg["init"]["exec"];
 	std::stringstream exec_stream(exec);
 
 	//Execute the program given by the exec key in the config
@@ -79,9 +79,7 @@ int main(int argc, char** argv, char** envp) {
 
 	//Wait for all child processes
 	while(1) {
-		Log::info("test");
-		//pid_t pid = waitpid(-1, NULL, 0);
-		pid_t pid = getpgid(-1);
+		pid_t pid = waitpid(-1, NULL, 0);
 		if(pid < 0 && errno == ECHILD) break; //All child processes exited
 	}
 
