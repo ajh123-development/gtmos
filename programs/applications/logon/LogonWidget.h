@@ -19,6 +19,8 @@
 
 #pragma once
 
+#include <libui/widget/Widget.h>
+
 class LogonWidget {
 public:
 	WIDGET_DEF(LogonWidget)
