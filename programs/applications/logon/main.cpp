@@ -49,6 +49,7 @@ int main(int argc, char** argv, char** envp) {
 	auto log_widget = LogonWidget::make(window);
 
 	window->set_contents(log_widget);
+	window->set_closeable(false);
 	window->set_decorated(true);
 	window->set_resizable(true);
 	window->set_title("Logon");
