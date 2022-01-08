@@ -32,7 +32,7 @@
 
 #include <libduck/Log.h>
 
-using Duck::Log, Duck::Config;
+using Duck::Log;
 
 int main(int argc, char** argv, char** envp) {
 	if(getpid() != 1) {
