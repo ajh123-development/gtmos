@@ -26,7 +26,6 @@ using namespace UI;
 
 Window::Window(): _window(pond_context->create_window(nullptr, {-1, -1, -1, -1}, true)) {
 	_window->set_draggable(true);
-	_window->set_closeable(true);
 }
 
 std::shared_ptr<Window> Window::create() {
