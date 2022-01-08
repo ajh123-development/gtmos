@@ -27,7 +27,7 @@ class LogonWidget: public UI::BoxLayout {
 public:
 	WIDGET_DEF(LogonWidget)
 
-	UI::Widget::Ptr create_login();
+	UI::Widget::Ptr create_login(UI::Window::Ptr window);
 
 private:
 	LogonWidget(UI::Window::Ptr window);
