@@ -79,6 +79,7 @@ int main(int argc, char** argv, char** envp) {
 
 	//Wait for all child processes
 	while(1) {
+		Log::info("tets");
 		pid_t pid = waitpid(-1, NULL, 0);
 		if(pid < 0 && errno == ECHILD) break; //All child processes exited
 	}

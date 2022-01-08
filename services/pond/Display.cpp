@@ -447,8 +447,6 @@ bool Display::update_keyboard() {
 	int num_events = (int) nread / sizeof(KeyboardEvent);
 	if(_focused_window) {
 		for(int i = 0; i < num_events; i++) {
-			events[i].key;
-			Log::info(events[i].modifiers);
 			_focused_window->handle_keyboard_event(events[i]);
 		}
 	}
