@@ -24,7 +24,7 @@
 #include <sys/wait.h>
 #include "LogonWidget.h"
 
-#define SANDBAR_HEIGHT 20
+using Duck::Log;
 
 void sigchld_handler(int sig) {
 	int dummy;
