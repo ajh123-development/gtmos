@@ -17,7 +17,6 @@
 	Copyright (c) Byteduck 2016-2021. All rights reserved.
 */
 
-#include <libpond/Event.h>
 #include <libapp/App.h>
 #include <csignal>
 #include <sys/wait.h>
