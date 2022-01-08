@@ -140,6 +140,16 @@ void UI::run(Callback callback) {
 		fprintf(stderr, "UIException in UI loop: %s\n", e.what());
 	}
 }
+void UI::run() {
+	try {
+		while (!should_exit) {
+			update(-1);
+		}
+	} catch(const UI::UIException& e) {
+		fprintf(stderr, "UIException in UI loop: %s\n", e.what());
+	}
+}
+
 
 void UI::update(int timeout) {
 	//Perform needed repaints

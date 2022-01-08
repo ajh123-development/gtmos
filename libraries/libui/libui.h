@@ -41,6 +41,7 @@ namespace UI {
 
 	template<typename Callback>
 	void run(Callback callback);
+	void run();
 
 	void update(int timeout);
 	bool ready_to_exit();
