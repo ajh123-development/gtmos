@@ -18,11 +18,18 @@
 */
 
 #include <libapp/App.h>
+#include <libduck/Log.h>
 #include <csignal>
 #include <sys/wait.h>
 #include "LogonWidget.h"
 
-#define SANDBAR_HEIGHT 20
+using Duck::Log;
+
+//Event handlers
+void handler()
+{
+	Log::info("Hi?");	
+}
 
 void sigchld_handler(int sig) {
 	int dummy;
@@ -56,12 +63,8 @@ int main(int argc, char** argv, char** envp) {
 	window->resize({300, 300});
 	window->show();
 
-	// //Event handlers
-	// while(UI::pond_context->has_event()) {
-	// 	Pond::Event event = UI::pond_context->next_event();
-
 	//Run event loop
-	UI::run();
+	UI::run(handler);
 
 	return 0;
 }
