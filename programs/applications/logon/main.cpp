@@ -25,15 +25,18 @@
 
 using Duck::Log;
 
+
+//Event handlers
+
+class LogonCallback: public UI::Callback {
+    void init () {
+        Log::info("Longon callback started!");
+    };
+};
+
 void sigchld_handler(int sig) {
 	int dummy;
 	wait(&dummy);
-}
-
-//UI Event handler
-void handler()
-{
-	Log::info("Hi?");	
 }
 
 int main(int argc, char** argv, char** envp) {
@@ -63,7 +66,8 @@ int main(int argc, char** argv, char** envp) {
 	window->resize({300, 300});
 	window->show();
 
-	UI::run(handler);
+	LogonCallback callback;
+	UI::run(callback);
 
 	return 0;
 }

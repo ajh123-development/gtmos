@@ -30,6 +30,17 @@
 #include <libapp/App.h>
 
 namespace UI {
+	class Callback {
+		public:
+			void start () {
+				this->init();
+			};
+
+			virtual void init () {};
+	};
+}
+
+namespace UI {
 	template<typename T>
 	using Ptr = std::shared_ptr<T>;
 	template<typename T>
@@ -39,7 +50,6 @@ namespace UI {
 
 	void init(char** argv, char** envp);
 
-	template<typename Callback>
 	void run(Callback callback);
 	void run();
 

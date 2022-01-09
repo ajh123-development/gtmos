@@ -129,12 +129,11 @@ void handle_pond_events() {
 	}
 }
 
-template<typename Callback>
-void UI::run(Callback&& callback) {
+void UI::run(Callback callback) {
 	try {
+		callback.start();
 		while (!should_exit) {
 			update(-1);
-			callback();
 		}
 	} catch(const UI::UIException& e) {
 		fprintf(stderr, "UIException in UI loop: %s\n", e.what());
