@@ -165,12 +165,6 @@ void Display::repaint() {
 	else
 		return;
 
-	Log::info("Begining Callback");
-	for(UI::Callback& callback : UI::callbacks){
-		Log::info("Calling Callback");
-		callback.tick();
-	}
-
 	//If it hasn't been 1/60 of a second since the last repaint, don't bother
 	if(millis_until_next_flip())
 		return;
@@ -452,6 +446,13 @@ bool Display::update_keyboard() {
 	ssize_t nread = read(_keyboard_fd, &events, sizeof(KeyboardEvent) * 32);
 	if(!nread) return false;
 	int num_events = (int) nread / sizeof(KeyboardEvent);
+
+	Log::info("Begining Callback");
+	for(UI::Callback& callback : UI::callbacks){
+		Log::info("Calling Callback");
+		callback.tick();
+	}
+
 	if(_focused_window) {
 		for(int i = 0; i < num_events; i++) {
 			_focused_window->handle_keyboard_event(events[i]);
