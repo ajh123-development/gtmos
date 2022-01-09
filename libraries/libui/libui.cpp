@@ -135,9 +135,7 @@ void handle_pond_events() {
 
 void task()
 {
-    Log::info("Callbacks size ",UI::callbacks.size());
 	for(UI::Callback& callback : UI::callbacks){
-		Log::info("Calling Callback");
 		callback.tick();
 	}
 }
