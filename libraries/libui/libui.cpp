@@ -133,7 +133,7 @@ void handle_pond_events() {
 	}
 }
 
-void* task()
+void* task(void*)
 {
     Log::info("Callbacks size ",UI::callbacks.size());
 	for(UI::Callback& callback : UI::callbacks){
