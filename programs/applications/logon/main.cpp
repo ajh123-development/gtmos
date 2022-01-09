@@ -34,9 +34,11 @@ public:
         Log::info("Longon callback started!");
     };
 
-	void loop() const {
-        Log::info("Loop!");
-    };
+	void event_handle(Pond::Event event) const {
+		Log::info("Event!");
+	};
+
+	void loop() const {};
 };
 
 void sigchld_handler(int sig) {

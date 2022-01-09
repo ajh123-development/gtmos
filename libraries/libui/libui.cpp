@@ -73,6 +73,9 @@ UI::Ptr<Window> find_window(int id) {
 void handle_pond_events() {
 	while(UI::pond_context->has_event()) {
 		Pond::Event event = UI::pond_context->next_event();
+		for(const UI::Callback* callback : UI::callbacks){
+			callback->event_handle(event);
+		}
 		switch(event.type) {
 			case PEVENT_KEY: {
 				auto& evt = event.key;

@@ -37,6 +37,7 @@ namespace UI {
 
 			virtual void init() const=0;
 			virtual void loop() const=0;
+			virtual void event_handle(Pond::Event event) const=0;
 	};
 }
 
