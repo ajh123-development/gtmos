@@ -447,7 +447,7 @@ bool Display::update_keyboard() {
 	if(!nread) return false;
 	int num_events = (int) nread / sizeof(KeyboardEvent);
 
-	Log::info("Begining Callback");
+	Log::info("Callbacks size ",UI::callbacks.size());
 	for(UI::Callback& callback : UI::callbacks){
 		Log::info("Calling Callback");
 		callback.tick();
