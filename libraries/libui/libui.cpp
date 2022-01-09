@@ -155,6 +155,12 @@ void UI::run() {
 
 
 void UI::update(int timeout) {
+	Log::info("Update");
+	for(Callback& callback : callbacks){
+		Log::info("Calling Callback");
+		callback.tick();
+	}
+
 	//Perform needed repaints
 	for(auto window : windows) {
 		if(window.second)
@@ -163,10 +169,6 @@ void UI::update(int timeout) {
 
 	//Read and process events
 	poll(pollfds.data(), pollfds.size(), timeout);
-	for(Callback& callback : callbacks){
-		Log::info("Calling Callback");
-		callback.tick();
-	}
 
 	for(auto& pollfd : pollfds) {
 		if(pollfd.revents) {
