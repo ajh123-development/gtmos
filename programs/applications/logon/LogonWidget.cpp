@@ -35,6 +35,9 @@ LogonWidget::LogonWidget(UI::Window::Ptr& window): BoxLayout(VERTICAL) {
 
 bool LogonWidget::on_keyboard(Pond::KeyEvent evt){
 	Log::info(unsigned(evt.modifiers));
+	Log::info("=");
+	Log::info(unsigned(evt.key));
+	Log::info("");
 	return false;
 }
 
