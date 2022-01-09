@@ -48,26 +48,10 @@ Widget::Ptr LogonWidget::create_login(UI::Window::Ptr& window) {
 		auto& cfg = cfg_res.value();
 
 		std::string exec = cfg["init"]["exec"];
-		std::stringstream exec_stream(exec);
-
 		if(!fork()) {
-			//Split arguments from exec command
-			std::vector<std::string> args;
-			std::string arg;
-			while(std::getline(exec_stream, arg, ' '))
-				args.push_back(arg);
-
-			//Convert c++ string vector into cstring array
-			const char* c_args[args.size() + 1];
-			for(auto i = 0; i < args.size(); i++)
-				c_args[i] = args[i].c_str();
-			c_args[args.size()] = NULL;
-
-			char* env[] = {NULL};
-
-			//Execute the command
-			execve(c_args[0], (char* const*) c_args, env);
-			exit(-1);
+			char* argv[] = {NULL};
+			char* envp[] = {NULL};
+			execve(exec.c_str(), argv, envp);
 		}
 		return true;
 	};
