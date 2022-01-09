@@ -135,14 +135,14 @@ void handle_pond_events() {
 
 void task()
 {
-	for(UI::Callback& callback : UI::callbacks){
+	for(const UI::Callback& callback : UI::callbacks){
 		callback->loop();
 	}
 }
 
-void UI::run(Callback& callback) {
+void UI::run(const UI::Callback& callback) {
 	try {
-		callback.start();
+		callback->init();
 		callbacks.push_back(callback);
 		while (!should_exit) {
 			update(1);

@@ -35,10 +35,6 @@ namespace UI {
 			Callback() {};
 			virtual ~Callback() {};
 
-			void start() {
-				this->init();
-			};
-
 			virtual void init() {};
 			virtual void loop() {};
 	};
