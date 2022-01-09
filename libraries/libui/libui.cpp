@@ -162,7 +162,7 @@ void UI::update(int timeout) {
 	//Read and process events
 	poll(pollfds.data(), pollfds.size(), timeout);
 	for(Callback& callback : callbacks){
-		callback.loop();
+		callback.tick();
 	}
 
 	for(auto& pollfd : pollfds) {

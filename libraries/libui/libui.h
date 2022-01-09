@@ -35,6 +35,9 @@ namespace UI {
 			void start() {
 				this->init();
 			};
+			void tick() {
+				this->loop();
+			};
 
 			virtual void init() {};
 			virtual void loop() {};
