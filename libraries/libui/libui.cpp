@@ -29,7 +29,7 @@
 using namespace UI;
 using Duck::Log;
 
-std::vector<UI::Callback> UI::callbacks;
+std::vector<const UI::Callback&> UI::callbacks;
 Pond::Context* UI::pond_context = nullptr;
 std::vector<pollfd> pollfds;
 std::map<int, Poll> polls;
