@@ -39,8 +39,8 @@ bool LogonWidget::on_keyboard(Pond::KeyEvent evt){
 	bool control = true;
 	bool alt = true;
 	if(control && alt) {
-		Log::info(evt.scancode);
-		if(evt.scancode == 46){
+		Log::info(evt.key);
+		if(evt.key == 46){
 			Log::info("Control Alt Delete");
 		}
 	}
