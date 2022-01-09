@@ -32,12 +32,12 @@
 namespace UI {
 	class Callback {
 		public:
-			void start () {
+			void start() {
 				this->init();
 			};
 
-			virtual void init () {};
-			virtual void event_handle (Pond::Event& event) {};
+			virtual void init() {};
+			virtual void event_handle(Pond::Event& event) {};
 	};
 }
 

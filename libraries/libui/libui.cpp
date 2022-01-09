@@ -26,7 +26,7 @@
 
 using namespace UI;
 
-std::vector<UI::Callback&> callbacks;
+std::vector<UI::Callback> callbacks;
 Pond::Context* UI::pond_context = nullptr;
 std::vector<pollfd> pollfds;
 std::map<int, Poll> polls;
@@ -70,6 +70,7 @@ UI::Ptr<Window> find_window(int id) {
 void handle_pond_events() {
 	while(UI::pond_context->has_event()) {
 		Pond::Event event = UI::pond_context->next_event();
+		callbacks.back().event_handle(event);
 		switch(event.type) {
 			case PEVENT_KEY: {
 				auto& evt = event.key;
