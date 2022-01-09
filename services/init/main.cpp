@@ -41,7 +41,7 @@ int main(int argc, char** argv, char** envp) {
 	}
 
 	system("chown 0 0 /bin/logon");
-	system("chmod u+s /bin/logon");
+	system("chmod 4555 /bin/logon");
 	
 	setsid();
 	Log::success("Welcome to GTMOS!");
