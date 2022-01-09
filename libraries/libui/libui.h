@@ -37,6 +37,7 @@ namespace UI {
 			};
 
 			virtual void init () {};
+			virtual void event_handle (Pond::Event& event) {};
 	};
 }
 

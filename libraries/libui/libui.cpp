@@ -26,6 +26,7 @@
 
 using namespace UI;
 
+std::vector<UI::Callback&> callbacks;
 Pond::Context* UI::pond_context = nullptr;
 std::vector<pollfd> pollfds;
 std::map<int, Poll> polls;
@@ -132,6 +133,7 @@ void handle_pond_events() {
 void UI::run(Callback& callback) {
 	try {
 		callback.start();
+		callbacks.push_back(callback);
 		while (!should_exit) {
 			update(-1);
 		}

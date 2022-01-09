@@ -29,8 +29,12 @@ using Duck::Log;
 //Event handlers
 
 class LogonCallback: public UI::Callback {
-    void init () {
+    void init() override {
         Log::info("Longon callback started!");
+    };
+
+	void event_handle(Pond::Event& event) override {
+        Log::info("Event!");
     };
 };
 
