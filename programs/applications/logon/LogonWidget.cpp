@@ -24,24 +24,24 @@
 using namespace UI;
 using Duck::Log;
 
+UI::Label::Ptr display;
+
 LogonWidget::LogonWidget(UI::Window::Ptr& window): BoxLayout(VERTICAL) {
-	UI::Label::Ptr display = Label::make("Press Control Alt Delete to login");
+	this->window = window;
+	display = Label::make("Press Control Alt Delete to login");
 	display->set_alignment(UI::CENTER, UI::END);
 	display->set_font(UI::pond_context->get_font("gohu-14"));
 	display->set_padding({8, 8});
 	add_child(display);
-	add_child(create_login(window));
 }
 
 bool LogonWidget::on_keyboard(Pond::KeyEvent evt){
 	bool control = KBD_MOD_CTRL & evt.modifiers;
 	bool alt = KBD_MOD_ALT & evt.modifiers;
-	//bool control = true;
-	//bool alt = true;
 	if(control && alt) {
-		Log::info(evt.scancode);
 		if(evt.scancode == 83){
-			Log::info("Control Alt Delete");
+			remove_child(display);
+			add_child(create_login(this->window));
 		}
 	}
 	return false;

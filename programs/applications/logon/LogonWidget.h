@@ -32,5 +32,6 @@ public:
 	bool on_keyboard(Pond::KeyEvent evt);
 
 private:
+	UI::Window::Ptr& window;
 	LogonWidget(UI::Window::Ptr& window);
 };
