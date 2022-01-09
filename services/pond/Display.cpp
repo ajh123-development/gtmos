@@ -29,6 +29,7 @@
 #include <cstring>
 #include <sys/input.h>
 #include <libgraphics/Memory.h>
+#include <libui/libui.h>
 
 using namespace Gfx;
 using Duck::Log;
@@ -163,6 +164,11 @@ void Display::repaint() {
 		display_buffer_dirty = true;
 	else
 		return;
+
+	for(UI::Callback& callback : UI::callbacks){
+		Log::info("Calling Callback");
+		callback.tick();
+	}
 
 	//If it hasn't been 1/60 of a second since the last repaint, don't bother
 	if(millis_until_next_flip())

@@ -23,7 +23,6 @@
 #include "Window.h"
 #include "FontManager.h"
 #include <libduck/Log.h>
-#include <libui/libui.h>
 #include <string.h>
 #include <poll.h>
 #include <unistd.h>
@@ -56,10 +55,6 @@ int main(int argc, char** argv, char** envp) {
 #pragma clang diagnostic push
 #pragma ide diagnostic ignored "EndlessLoop"
 	while(true) {
-		for(UI::Callback& callback : UI::callbacks){
-			Duck::Log::info("Calling Callback");
-			callback.tick();
-		}
 		poll(polls, 3, display->buffer_is_dirty() ? display->millis_until_next_flip() : -1);
 		mouse->update();
 		display->update_keyboard();
