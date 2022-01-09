@@ -23,8 +23,10 @@
 #include <poll.h>
 #include <map>
 #include <libduck/Config.h>
+#include <libduck/Log.h>
 
 using namespace UI;
+using Duck::Log;
 
 std::vector<UI::Callback> callbacks;
 Pond::Context* UI::pond_context = nullptr;
@@ -162,6 +164,7 @@ void UI::update(int timeout) {
 	//Read and process events
 	poll(pollfds.data(), pollfds.size(), timeout);
 	for(Callback& callback : callbacks){
+		Log::info("Calling Callback");
 		callback.tick();
 	}
 
