@@ -29,6 +29,7 @@ public:
 	WIDGET_DEF(LogonWidget)
 
 	UI::Widget::Ptr create_login(UI::Window::Ptr& window);
+	bool LogonWidget::on_keyboard(Pond::KeyEvent evt);
 
 private:
 	LogonWidget(UI::Window::Ptr& window);

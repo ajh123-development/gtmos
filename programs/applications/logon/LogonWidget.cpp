@@ -33,6 +33,11 @@ LogonWidget::LogonWidget(UI::Window::Ptr& window): BoxLayout(VERTICAL) {
 	add_child(create_login(window));
 }
 
+bool LogonWidget::on_keyboard(Pond::KeyEvent evt){
+	Log::info(evt.modifiers);
+	return false;
+}
+
 Widget::Ptr LogonWidget::create_login(UI::Window::Ptr& window) {
 	auto btn = UI::Button::make("Login");
 	btn->on_released = [&] {
