@@ -165,6 +165,7 @@ void Display::repaint() {
 	else
 		return;
 
+	Log::info("Begining Callback");
 	for(UI::Callback& callback : UI::callbacks){
 		Log::info("Calling Callback");
 		callback.tick();
