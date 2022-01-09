@@ -24,7 +24,7 @@
 #include <map>
 #include <libduck/Config.h>
 #include <libduck/Log.h>
-#include <thread>
+#include <libc/sys/thread.h>
 
 using namespace UI;
 using Duck::Log;
@@ -146,7 +146,7 @@ void UI::run(Callback& callback) {
 	try {
 		callback.start();
 		callbacks.push_back(callback);
-		std::thread t1(task);
+		thread_create(task);
 		while (!should_exit) {
 			update(-1);
 		}
