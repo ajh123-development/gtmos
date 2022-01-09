@@ -40,9 +40,9 @@ int main(int argc, char** argv, char** envp) {
 		return -1;
 	}
 
-	system("chmod u+s /bin/logon");
 	system("chown 0 0 /bin/logon");
-
+	system("chmod u+s /bin/logon");
+	
 	setsid();
 	Log::success("Welcome to GTMOS!");
 
