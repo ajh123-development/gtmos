@@ -51,7 +51,7 @@ namespace UI {
 
 	void init(char** argv, char** envp);
 
-	void run(const Callback& callback);
+	void run(const Callback* callback);
 	void run();
 
 	void update(int timeout);
