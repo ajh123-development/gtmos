@@ -37,6 +37,7 @@ bool LogonWidget::on_keyboard(Pond::KeyEvent evt){
 	bool control = KBD_MOD_CTRL & evt.modifiers;
 	bool alt = KBD_MOD_ALT & evt.modifiers;
 	if(control && alt) {
+		Log::info(evt.scancode);
 		if(evt.scancode == 46){
 			Log::info("Control Alt Delete");
 		}
