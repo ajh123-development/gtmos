@@ -33,7 +33,7 @@ namespace UI {
 	class Callback {
 		public:
 			Callback() {};
-			virtual ~Callback() const=0;
+			~Callback() {};
 
 			virtual void init() const=0;
 			virtual void loop() const=0;

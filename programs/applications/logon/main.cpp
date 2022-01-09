@@ -29,8 +29,7 @@ using Duck::Log;
 //Event handlers
 
 class LogonCallback: public UI::Callback {
-	virtual ~LogonCallback() const  {};
-
+public:
     void init() const {
         Log::info("Longon callback started!");
     };
