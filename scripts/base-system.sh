@@ -51,8 +51,4 @@ chmod 777 "$FS_DIR"/sock
 msg "Setting up /etc/..."
 chown -R 0:0 "$FS_DIR"/etc
 
-msg "Setting up /bin/logon"
-chown -R 0:0 "$FS_DIR"/bin/logon
-chmod +s "$FS_DIR"/bin/logon
-
 success "Done setting up root filesystem!"
