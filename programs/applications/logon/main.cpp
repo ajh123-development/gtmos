@@ -72,7 +72,8 @@ int main(int argc, char** argv, char** envp) {
 	window->resize({300, 300});
 	window->show();
 
-	UI::Callback* callback = new LogonCallback();
+	LogonCallback lc();
+	UI::Callback* callback = &lc;
 	UI::run(callback);
 
 	return 0;
