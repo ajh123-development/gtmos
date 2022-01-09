@@ -19,7 +19,6 @@
 
 #include "LogonWidget.h"
 #include <libduck/Log.h>
-#include <libduck/Config.h>
 #include <system_error>
 
 using namespace UI;
@@ -38,21 +37,10 @@ Widget::Ptr LogonWidget::create_login(UI::Window::Ptr& window) {
 	auto btn = UI::Button::make("Login");
 	btn->on_released = [&] {
 		window->hide();
-
-		//Read config file
-		auto cfg_res = Duck::Config::read_from("/etc/init.conf");
-		if(cfg_res.is_error()) {
-			Log::crit("Failed to read /etc/init.conf: ", strerror(errno));
-			exit(errno);
-		}
-		auto& cfg = cfg_res.value();
-
-		std::string exec = cfg["init"]["exec"];
-		Log::info("Loading ",exec.c_str());
 		if(!fork()) {
 			char* argv[] = {NULL};
 			char* envp[] = {NULL};
-			execve(exec.c_str(), argv, envp);
+			execve("/bin/sandbar", argv, envp);
 			exit(-1);
 		}
 		return true;
