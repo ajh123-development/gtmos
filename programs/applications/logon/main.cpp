@@ -29,11 +29,13 @@ using Duck::Log;
 //Event handlers
 
 class LogonCallback: public UI::Callback {
-    void init() override {
+	virtual ~LogonCallback() {};
+
+    void init() {
         Log::info("Longon callback started!");
     };
 
-	void loop() override {
+	void loop() {
         Log::info("Loop!");
     };
 };
@@ -70,7 +72,7 @@ int main(int argc, char** argv, char** envp) {
 	window->resize({300, 300});
 	window->show();
 
-	LogonCallback callback;
+	UI::Callback* callback = new LogonCallback();
 	UI::run(callback);
 
 	return 0;

@@ -136,8 +136,7 @@ void handle_pond_events() {
 void task()
 {
 	for(UI::Callback& callback : UI::callbacks){
-		Log::info("?");
-		callback.tick();
+		callback->loop();
 	}
 }
 
@@ -156,7 +155,7 @@ void UI::run(Callback& callback) {
 void UI::run() {
 	try {
 		while (!should_exit) {
-			update(1);
+			update(-1);
 		}
 	} catch(const UI::UIException& e) {
 		fprintf(stderr, "UIException in UI loop: %s\n", e.what());

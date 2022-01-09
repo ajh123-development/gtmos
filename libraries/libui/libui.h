@@ -32,11 +32,11 @@
 namespace UI {
 	class Callback {
 		public:
+			Callback() {};
+			virtual ~Callback() {};
+
 			void start() {
 				this->init();
-			};
-			void tick() {
-				this->loop();
 			};
 
 			virtual void init() {};
