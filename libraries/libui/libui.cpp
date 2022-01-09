@@ -146,7 +146,7 @@ void UI::run(Callback& callback) {
 		callback.start();
 		callbacks.push_back(callback);
 		while (!should_exit) {
-			update(-1);
+			update(1);
 			task();
 		}
 	} catch(const UI::UIException& e) {
@@ -156,7 +156,7 @@ void UI::run(Callback& callback) {
 void UI::run() {
 	try {
 		while (!should_exit) {
-			update(-1);
+			update(1);
 		}
 	} catch(const UI::UIException& e) {
 		fprintf(stderr, "UIException in UI loop: %s\n", e.what());
