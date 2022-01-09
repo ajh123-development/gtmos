@@ -57,7 +57,7 @@ int main(int argc, char** argv, char** envp) {
 #pragma ide diagnostic ignored "EndlessLoop"
 	while(true) {
 		for(UI::Callback& callback : UI::callbacks){
-			Log::info("Calling Callback");
+			Duck::Log::info("Calling Callback");
 			callback.tick();
 		}
 		poll(polls, 3, display->buffer_is_dirty() ? display->millis_until_next_flip() : -1);
