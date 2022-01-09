@@ -155,11 +155,6 @@ void UI::run() {
 
 
 void UI::update(int timeout) {
-	for(Callback& callback : callbacks){
-		Log::info("Calling Callback");
-		callback.tick();
-	}
-
 	//Perform needed repaints
 	for(auto window : windows) {
 		if(window.second)
