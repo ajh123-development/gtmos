@@ -130,7 +130,7 @@ void handle_pond_events() {
 }
 
 template<typename Callback>
-void UI::run(Callback callback) {
+void UI::run(Callback&& callback) {
 	try {
 		while (!should_exit) {
 			update(-1);
