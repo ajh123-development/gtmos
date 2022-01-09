@@ -33,8 +33,8 @@ class LogonCallback: public UI::Callback {
         Log::info("Longon callback started!");
     };
 
-	void event_handle(Pond::Event& event) override {
-        Log::info("Event!");
+	void loop() override {
+        Log::info("Loop!");
     };
 };
 

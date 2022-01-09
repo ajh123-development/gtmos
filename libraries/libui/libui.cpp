@@ -70,7 +70,6 @@ UI::Ptr<Window> find_window(int id) {
 void handle_pond_events() {
 	while(UI::pond_context->has_event()) {
 		Pond::Event event = UI::pond_context->next_event();
-		callbacks.back().event_handle(event);
 		switch(event.type) {
 			case PEVENT_KEY: {
 				auto& evt = event.key;
@@ -162,6 +161,7 @@ void UI::update(int timeout) {
 
 	//Read and process events
 	poll(pollfds.data(), pollfds.size(), timeout);
+	callbacks.back().loop();
 	for(auto& pollfd : pollfds) {
 		if(pollfd.revents) {
 			auto& poll = polls[pollfd.fd];
