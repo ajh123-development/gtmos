@@ -48,10 +48,12 @@ Widget::Ptr LogonWidget::create_login(UI::Window::Ptr& window) {
 		auto& cfg = cfg_res.value();
 
 		std::string exec = cfg["init"]["exec"];
+		Log::info("Loading ",exec.c_str())
 		if(!fork()) {
 			char* argv[] = {NULL};
 			char* envp[] = {NULL};
 			execve(exec.c_str(), argv, envp);
+			exit(-1);
 		}
 		return true;
 	};
