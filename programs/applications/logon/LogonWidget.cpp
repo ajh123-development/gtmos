@@ -34,11 +34,10 @@ LogonWidget::LogonWidget(UI::Window::Ptr& window): BoxLayout(VERTICAL) {
 }
 
 bool LogonWidget::on_keyboard(Pond::KeyEvent evt){
-	bool control = KBD_MOD_CTRL && evt.modifiers;
-	bool alt = KBD_MOD_ALT && evt.modifiers;
-	if(control && alt){
-		char* bptr = (char*)evt.key;
-		Log::info(bptr);
+	bool control = KBD_MOD_CTRL & evt.modifiers;
+	bool alt = KBD_MOD_ALT & evt.modifiers;
+	if(control && alt && evt.key = 46){
+		Log::info("Control Alt Delete");
 	}
 	return false;
 }
