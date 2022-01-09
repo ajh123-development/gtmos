@@ -155,7 +155,6 @@ void UI::run() {
 
 
 void UI::update(int timeout) {
-	Log::info("Update");
 	for(Callback& callback : callbacks){
 		Log::info("Calling Callback");
 		callback.tick();

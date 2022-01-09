@@ -51,6 +51,7 @@ namespace UI {
 	using ArgPtr = const std::shared_ptr<T>&;
 
 	extern Pond::Context* pond_context;
+	extern std::vector<UI::Callback> callbacks;
 
 	void init(char** argv, char** envp);
 
