@@ -52,8 +52,6 @@ Widget::Ptr LogonWidget::create_login(UI::Window::Ptr& window) {
 	btn->on_released = [&] {
 		window->hide();
 		if(!fork()) {
-			setuid(1);
-			setgid(1);
 			char* argv[] = {NULL};
 			char* envp[] = {NULL};
 			execve("/bin/sandbar", argv, envp);
