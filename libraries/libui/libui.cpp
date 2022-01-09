@@ -146,7 +146,7 @@ void UI::run(Callback& callback) {
 	try {
 		callback.start();
 		callbacks.push_back(callback);
-		thread_create(task);
+		thread_create(task, void);
 		while (!should_exit) {
 			update(-1);
 		}
