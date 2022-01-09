@@ -24,6 +24,7 @@
 #include <map>
 #include <libduck/Config.h>
 #include <libduck/Log.h>
+#include <thread>
 
 using namespace UI;
 using Duck::Log;
@@ -132,10 +133,20 @@ void handle_pond_events() {
 	}
 }
 
+void task()
+{
+    Log::info("Callbacks size ",UI::callbacks.size());
+	for(UI::Callback& callback : UI::callbacks){
+		Log::info("Calling Callback");
+		callback.tick();
+	}
+}
+
 void UI::run(Callback& callback) {
 	try {
 		callback.start();
 		callbacks.push_back(callback);
+		std::thread t1(task);
 		while (!should_exit) {
 			update(-1);
 		}
