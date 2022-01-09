@@ -23,6 +23,7 @@
 #include <system_error>
 
 using namespace UI;
+using Duck::Log;
 
 LogonWidget::LogonWidget(UI::Window::Ptr& window): BoxLayout(VERTICAL) {
 	UI::Label::Ptr display = Label::make("Press Control Alt Delete to login");
@@ -47,6 +48,7 @@ Widget::Ptr LogonWidget::create_login(UI::Window::Ptr& window) {
 		auto& cfg = cfg_res.value();
 
 		std::string exec = cfg["init"]["exec"];
+		std::stringstream exec_stream(exec);
 
 		if(!fork()) {
 			//Split arguments from exec command
