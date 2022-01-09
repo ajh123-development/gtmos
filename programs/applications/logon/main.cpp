@@ -34,11 +34,9 @@ public:
         Log::info("Longon callback started!");
     };
 
-	void event_handle(Pond::Event event) const {
-		Log::info("Event!");
+	void loop() const {
+		//TODO: read Control Alt Delete
 	};
-
-	void loop() const {};
 };
 
 void sigchld_handler(int sig) {

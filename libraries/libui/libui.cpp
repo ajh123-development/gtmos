@@ -73,9 +73,6 @@ UI::Ptr<Window> find_window(int id) {
 void handle_pond_events() {
 	while(UI::pond_context->has_event()) {
 		Pond::Event event = UI::pond_context->next_event();
-		for(const UI::Callback* callback : UI::callbacks){
-			callback->event_handle(event);
-		}
 		switch(event.type) {
 			case PEVENT_KEY: {
 				auto& evt = event.key;
@@ -148,8 +145,8 @@ void UI::run(const UI::Callback* callback) {
 		callback->init();
 		callbacks.push_back(callback);
 		while (!should_exit) {
-			update(1);
 			task();
+			update(1);
 		}
 	} catch(const UI::UIException& e) {
 		fprintf(stderr, "UIException in UI loop: %s\n", e.what());
