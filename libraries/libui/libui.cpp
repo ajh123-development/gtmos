@@ -129,7 +129,7 @@ void handle_pond_events() {
 	}
 }
 
-void UI::run(Callback callback) {
+void UI::run(Callback& callback) {
 	try {
 		callback.start();
 		while (!should_exit) {
