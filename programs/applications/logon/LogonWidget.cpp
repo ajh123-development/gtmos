@@ -23,7 +23,7 @@
 
 using namespace UI;
 
-LogonWidget::LogonWidget(UI::Window::Ptr window): BoxLayout(VERTICAL) {
+LogonWidget::LogonWidget(UI::Window::Ptr& window): BoxLayout(VERTICAL) {
 	UI::Label::Ptr display = Label::make("0");
 	display->set_alignment(UI::CENTER, UI::END);
 	display->set_font(UI::pond_context->get_font("gohu-14"));
@@ -32,7 +32,7 @@ LogonWidget::LogonWidget(UI::Window::Ptr window): BoxLayout(VERTICAL) {
 	add_child(create_login(window));
 }
 
-Widget::Ptr LogonWidget::create_login(UI::Window::Ptr window) {
+Widget::Ptr LogonWidget::create_login(UI::Window::Ptr& window) {
 	auto btn = UI::Button::make("Login");
 	btn->on_released = [&] {
 		window->hide();
