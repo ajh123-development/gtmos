@@ -133,7 +133,7 @@ void handle_pond_events() {
 	}
 }
 
-void* task(void*)
+void task()
 {
     Log::info("Callbacks size ",UI::callbacks.size());
 	for(UI::Callback& callback : UI::callbacks){
@@ -146,9 +146,15 @@ void UI::run(Callback& callback) {
 	try {
 		callback.start();
 		callbacks.push_back(callback);
-		thread_create(task, void);
-		while (!should_exit) {
-			update(-1);
+
+		if(fork()) {
+        	while(!should_exit) {
+				task();
+        	}
+    	} else {
+			while (!should_exit) {
+				update(-1);
+			}
 		}
 	} catch(const UI::UIException& e) {
 		fprintf(stderr, "UIException in UI loop: %s\n", e.what());
