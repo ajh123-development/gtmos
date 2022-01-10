@@ -1,18 +1,18 @@
 /*
-    This file is part of duckOS.
+    This file is part of duckOS and GTMOS.
     
-    duckOS is free software: you can redistribute it and/or modify
+    duckOS and GTMOS is free software: you can redistribute it and/or modify
     it under the terms of the GNU General Public License as published by
     the Free Software Foundation, either version 3 of the License, or
     (at your option) any later version.
     
-    duckOS is distributed in the hope that it will be useful,
+    duckOS and GTMOS is distributed in the hope that it will be useful,
     but WITHOUT ANY WARRANTY; without even the implied warranty of
     MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
     GNU General Public License for more details.
     
     You should have received a copy of the GNU General Public License
-    along with duckOS.  If not, see <https://www.gnu.org/licenses/>.
+    along with duckOS and GTMOS.  If not, see <https://www.gnu.org/licenses/>.
     
     Copyright (c) Byteduck 2016-2020. All rights reserved.
 */
@@ -23,11 +23,13 @@
 #include <libduck/Args.h>
 #include <libduck/Path.h>
 #include <unistd.h>
+#include <sys/stat.h>
 
 std::string dir_name = ".";
 bool no_color = false;
 bool colorize = false;
 bool show_all = false;
+bool long_list = false;
 
 const char* REG_FORMAT = "\033[39m";
 const char* DIR_FORMAT = "\033[36m";
@@ -41,6 +43,7 @@ int main(int argc, char **argv, char **env) {
 	args.add_named(no_color, "n", "no-color", "Do not colorize the output.");
 	args.add_named(colorize, std::nullopt, "color", "Colorize the output.");
 	args.add_named(show_all, "a", "all", "Show entries starting with \".\".");
+	args.add_named(long_list, "l", "list", "Show a long list.");
 	args.parse(argc, argv);
 
 	if(!isatty(STDOUT_FILENO))
@@ -68,6 +71,15 @@ int main(int argc, char **argv, char **env) {
 
 		auto entry_name = std::string(entry.name());
 		if(entry_name[0] != '.' || show_all)
+			if(long_list){
+				struct stat info;
+				const char * path = entry.path().string().c_str();
+				uid_t user = info.st_uid;
+				gid_t group = info.st_gid;
+				stat(path, &info);
+				printf("%hu %hu ", user, group);
+			}
+			
 			printf("%s%s\n", color, entry_name.c_str());
 	}
 
