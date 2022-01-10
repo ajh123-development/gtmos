@@ -3,6 +3,3 @@
 	url = https://github.com/byteduck/duckos-doom
 [submodule "doom"]
 	url = git@github.com:byteduck/duckos-doom
-[submodule "libraries/ports/lua/"]
-	path = libraries/ports/lua/
-	url = https://github.com/ajh123-testing/lua-cmake-duckOS
