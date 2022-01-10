@@ -1,0 +1,64 @@
+/*
+	This file is part of duckOS.
+
+	duckOS is free software: you can redistribute it and/or modify
+	it under the terms of the GNU General Public License as published by
+	the Free Software Foundation, either version 3 of the License, or
+	(at your option) any later version.
+
+	duckOS is distributed in the hope that it will be useful,
+	but WITHOUT ANY WARRANTY; without even the implied warranty of
+	MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+	GNU General Public License for more details.
+
+	You should have received a copy of the GNU General Public License
+	along with duckOS.  If not, see <https://www.gnu.org/licenses/>.
+
+	Copyright (c) Byteduck 2016-2021. All rights reserved.
+*/
+
+#include "SettingsWidget.h"
+#include <libui/widget/Label.h>
+#include <libui/widget/Image.h>
+#include <libui/libui.h>
+#include <libduck/Config.h>
+#include <string>
+
+using namespace UI;
+
+SettingsWidget::SettingsWidget(const Duck::DirectoryEntry& entry, SettingsViewWidget::ArgPtr dir_widget): BoxLayout(VERTICAL), entry(entry), dir_widget(dir_widget) {
+	auto image = UI::app_info().resource_image("file.png");
+	auto cfg_res = Duck::Config::read_from(entry.path());
+
+	if(!cfg_res.is_error()) {
+		auto& cfg = cfg_res.value();
+		if(cfg.has_section("SettingsView"))
+			Theme::load_config(cfg["SettingsView"]);
+			if(!cfg["SettingsView"]["name"].empty())
+				add_child(UI::Image::make(*image.get()));
+
+				std::string s = cfg["SettingsView"]["name"];
+				std::string delimiter = "\n";
+
+				size_t pos = 0;
+				std::string token;
+				while ((pos = s.find(delimiter)) != std::string::npos) {
+					token = s.substr(0, pos);
+					add_child(UI::Label::make(token));
+					s.erase(0, pos + delimiter.length());
+				}
+				add_child(UI::Label::make(s));	
+	} else {
+		add_child(UI::Image::make(*image.get()));
+		add_child(UI::Label::make(entry.name()));
+	}
+}
+
+bool SettingsWidget::on_mouse_button(Pond::MouseButtonEvent evt) {
+	if((evt.old_buttons & POND_MOUSE1) && !(evt.new_buttons & POND_MOUSE1)) {
+		if(entry.is_directory())
+			dir_widget->set_directory(entry.path());
+		return true;
+	}
+	return false;
+}

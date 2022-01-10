@@ -149,15 +149,17 @@ void Window::repaint_now() {
 		Gfx::Point title_pos = titlebar_rect.position() + Gfx::Point{title_xpos, titlebar_rect.height / 2 - font_height / 2};
 		ctx.draw_text(_title.c_str(), title_pos, Theme::window_title());
 
-		//Buttons
-		int button_size = titlebar_rect.height - 4;
-		_close_button.area = {
-				titlebar_rect.x + titlebar_rect.width - UI_WINDOW_PADDING - button_size,
-				titlebar_rect.y + 2,
-				button_size,
-				button_size
-		};
-		ctx.draw_button(_close_button.area, Theme::image(_close_button.image), _close_button.pressed);
+		if(_closeable){
+			//Buttons
+			int button_size = titlebar_rect.height - 4;
+			_close_button.area = {
+					titlebar_rect.x + titlebar_rect.width - UI_WINDOW_PADDING - button_size,
+					titlebar_rect.y + 2,
+					button_size,
+					button_size
+			};
+			ctx.draw_button(_close_button.area, Theme::image(_close_button.image), _close_button.pressed);
+		}
 	} else {
 		ctx.fill({0, 0, ctx.width(), ctx.height()}, RGBA(0, 0, 0, 0));
 	}
@@ -189,6 +191,13 @@ void Window::set_uses_alpha(bool uses_alpha) {
 	_uses_alpha = uses_alpha;
 	if(_decorated)
 		_window->set_uses_alpha(uses_alpha);
+}
+
+void Window::set_closeable(bool closeable) {
+	if(closeable == _closeable)
+		return;
+	_closeable = closeable;
+	repaint();
 }
 
 void Window::set_decorated(bool decorated) {

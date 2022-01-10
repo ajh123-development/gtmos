@@ -29,6 +29,7 @@
 #include <cstring>
 #include <sys/input.h>
 #include <libgraphics/Memory.h>
+#include <libui/libui.h>
 
 using namespace Gfx;
 using Duck::Log;
@@ -96,7 +97,7 @@ void Display::clear(uint32_t color) {
 void Display::set_root_window(Window* window) {
 	_root_window = window;
 
-	FILE* wallpaper = fopen("/usr/share/wallpapers/duck.png", "re");
+	FILE* wallpaper = fopen("/usr/share/wallpapers/black.png", "re");
 	if(!wallpaper) {
 		perror("Failed to open wallpaper");
 		return;
@@ -445,6 +446,7 @@ bool Display::update_keyboard() {
 	ssize_t nread = read(_keyboard_fd, &events, sizeof(KeyboardEvent) * 32);
 	if(!nread) return false;
 	int num_events = (int) nread / sizeof(KeyboardEvent);
+
 	if(_focused_window) {
 		for(int i = 0; i < num_events; i++) {
 			_focused_window->handle_keyboard_event(events[i]);

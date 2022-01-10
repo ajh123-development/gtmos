@@ -11,7 +11,7 @@ if [ -z "$USE_KVM" ]; then
 fi
 
 if [ -z "$DUCKOS_IMAGE" ]; then
-	DUCKOS_IMAGE="duckOS.img"
+	DUCKOS_IMAGE="gtmos.img"
 fi
 
 # Determine what acceleration we should use

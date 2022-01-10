@@ -2,6 +2,10 @@
 Thumbs.db
 ehthumbs.db
 
+# Visual Studio
+.opendb
+.vs/
+
 # Folder config file
 Desktop.ini
 
@@ -84,6 +88,7 @@ _deps
 
 # CMake
 cmake-build*/
+out/
 
 #
 # DUCKOS-SPECIFIC

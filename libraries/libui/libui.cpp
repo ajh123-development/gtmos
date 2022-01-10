@@ -1,18 +1,18 @@
 /*
-	This file is part of duckOS.
+	This file is part of duckOS and GTMOS.
 
-	duckOS is free software: you can redistribute it and/or modify
+	duckOS and GTMOS is free software: you can redistribute it and/or modify
 	it under the terms of the GNU General Public License as published by
 	the Free Software Foundation, either version 3 of the License, or
 	(at your option) any later version.
 
-	duckOS is distributed in the hope that it will be useful,
+	duckOS and GTMOS is distributed in the hope that it will be useful,
 	but WITHOUT ANY WARRANTY; without even the implied warranty of
 	MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
 	GNU General Public License for more details.
 
 	You should have received a copy of the GNU General Public License
-	along with duckOS.  If not, see <https://www.gnu.org/licenses/>.
+	along with duckOS and GTMOS.  If not, see <https://www.gnu.org/licenses/>.
 
 	Copyright (c) Byteduck 2016-2021. All rights reserved.
 */
@@ -27,7 +27,9 @@
 #include <climits>
 
 using namespace UI;
+using Duck::Log;
 
+std::vector<const UI::Callback*> UI::callbacks;
 Pond::Context* UI::pond_context = nullptr;
 std::vector<pollfd> pollfds;
 std::map<int, Poll> polls;
@@ -133,6 +135,25 @@ void handle_pond_events() {
 	}
 }
 
+void task()
+{
+	for(const UI::Callback* callback : UI::callbacks){
+		callback->loop();
+	}
+}
+
+void UI::run(const UI::Callback* callback) {
+	try {
+		callback->init();
+		callbacks.push_back(callback);
+		while (!should_exit) {
+			task();
+			update(1);
+		}
+	} catch(const UI::UIException& e) {
+		fprintf(stderr, "UIException in UI loop: %s\n", e.what());
+	}
+}
 void UI::run() {
 	try {
 		while (!should_exit) {
@@ -168,6 +189,7 @@ void UI::run() {
 	}
 }
 
+
 void UI::update(int timeout) {
 	//Perform needed repaints
 	for(auto window : windows) {
@@ -177,6 +199,7 @@ void UI::update(int timeout) {
 
 	//Read and process events
 	poll(pollfds.data(), pollfds.size(), timeout);
+
 	for(auto& pollfd : pollfds) {
 		if(pollfd.revents) {
 			auto& poll = polls[pollfd.fd];

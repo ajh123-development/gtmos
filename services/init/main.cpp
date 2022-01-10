@@ -1,3 +1,22 @@
+/*
+    This file is part of duckOS.
+    
+    duckOS and GTMOS is free software: you can redistribute it and/or modify
+    it under the terms of the GNU General Public License as published by
+    the Free Software Foundation, either version 3 of the License, or
+    (at your option) any later version.
+    
+    duckOS and GTMOS is distributed in the hope that it will be useful,
+    but WITHOUT ANY WARRANTY; without even the implied warranty of
+    MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+    GNU General Public License for more details.
+    
+    You should have received a copy of the GNU General Public License
+    along with duckOS and GTMOS.  If not, see <https://www.gnu.org/licenses/>.
+    
+    Copyright (c) Byteduck 2016-2020. All rights reserved.
+*/
+
 #include <csignal>
 #include <cstdio>
 #include <unistd.h>
@@ -5,34 +24,15 @@
 #include <cerrno>
 #include <cstring>
 #include <cstdlib>
-#include <libduck/Config.h>
+//#include <libduck/Config.h>
 #include <sstream>
 #include <vector>
 
-/*
-    This file is part of duckOS.
-    
-    duckOS is free software: you can redistribute it and/or modify
-    it under the terms of the GNU General Public License as published by
-    the Free Software Foundation, either version 3 of the License, or
-    (at your option) any later version.
-    
-    duckOS is distributed in the hope that it will be useful,
-    but WITHOUT ANY WARRANTY; without even the implied warranty of
-    MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
-    GNU General Public License for more details.
-    
-    You should have received a copy of the GNU General Public License
-    along with duckOS.  If not, see <https://www.gnu.org/licenses/>.
-    
-    Copyright (c) Byteduck 2016-2020. All rights reserved.
-*/
-
-// The init system for duckOS.
+// The init system for duckOS and GTMOS.
 
 #include <libduck/Log.h>
 
-using Duck::Log, Duck::Config;
+using Duck::Log;
 
 int main(int argc, char** argv, char** envp) {
 	if(getpid() != 1) {
@@ -40,18 +40,21 @@ int main(int argc, char** argv, char** envp) {
 		return -1;
 	}
 
+	system("chown 0 0 /bin/logon");
+	system("chmod 4555 /bin/logon");
+	
 	setsid();
-	Log::success("Welcome to duckOS!");
+	Log::success("Welcome to GTMOS!");
 
-	//Read config file
-	auto cfg_res = Config::read_from("/etc/init.conf");
-	if(cfg_res.is_error()) {
-		Log::crit("Failed to read /etc/init.conf: ", strerror(errno));
-		exit(errno);
-	}
-	auto& cfg = cfg_res.value();
+	// //Read config file
+	// auto cfg_res = Config::read_from("/etc/init.conf");
+	// if(cfg_res.is_error()) {
+	// 	Log::crit("Failed to read /etc/init.conf: ", strerror(errno));
+	// 	exit(errno);
+	// }
+	// auto& cfg = cfg_res.value();
 
-	std::string exec = cfg["init"]["exec"];
+	std::string exec = "/bin/pond";//cfg["init"]["exec"];
 	std::stringstream exec_stream(exec);
 
 	//Execute the program given by the exec key in the config
