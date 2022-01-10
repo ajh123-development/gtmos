@@ -77,9 +77,22 @@ int main(int argc, char **argv, char **env) {
 				uid_t user = info.st_uid;
 				gid_t group = info.st_gid;
 				stat(path, &info);
-				printf("\033[39m%u %u ", user, group);
+
+				printf("\033[39m");
+
+				printf((S_ISDIR(info.st_mode)) ? "d" : "-");
+				printf((info.st_mode & S_IRUSR) ? "r" : "-");
+				printf((info.st_mode & S_IWUSR) ? "w" : "-");
+				printf((info.st_mode & S_IXUSR) ? "x" : "-");
+				printf((info.st_mode & S_IRGRP) ? "r" : "-");
+				printf((info.st_mode & S_IWGRP) ? "w" : "-");
+				printf((info.st_mode & S_IXGRP) ? "x" : "-");
+				printf((info.st_mode & S_IROTH) ? "r" : "-");
+				printf((info.st_mode & S_IWOTH) ? "w" : "-");
+				printf((info.st_mode & S_IXOTH) ? "x" : "-");
+
+				printf(" %u %u ", user, group);
 			}
-			
 			printf("%s%s\n", color, entry_name.c_str());
 	}
 
