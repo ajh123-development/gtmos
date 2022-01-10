@@ -28,9 +28,10 @@
     - A working, precompiled version of `fuse-ext2` is available [here](https://github.com/gpz500/fuse-ext2/releases)
 
 ## Building the toolchain
-1. Open the `toolchain` directory in your terminal and run `build-toolchain.sh`. (You will need an internet connection as it downloads the needed binutils/gcc releases from the GNU ftp site.)
-2. Make a cup of coffee or tea and wait. It will take a while to compile.
-3. Once it's done, the toolchain will be in `toolchain/tools`, and the sysroot in `cmake-build/root`.
+1. Run the command `git submodule update --init --recursive libraries` as this will allow us to build the ported libraries
+2. Open the `toolchain` directory in your terminal and run `build-toolchain.sh`. (You will need an internet connection as it downloads the needed binutils/gcc releases from the GNU ftp site.)
+3. Make a cup of coffee or tea and wait. It will take a while to compile.
+4. Once it's done, the toolchain will be in `toolchain/tools`, and the sysroot in `cmake-build/root`.
 
 ### Editing the toolchain
 If you'd like to edit the c library, you can run `build-toolchain.sh libc` to recompile libc and libstdc++. If you just want to compile libc and not libstdc++, you can run `make libc` in the `cmake-build` folder.
