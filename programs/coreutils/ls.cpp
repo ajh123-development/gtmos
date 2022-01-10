@@ -77,7 +77,7 @@ int main(int argc, char **argv, char **env) {
 				uid_t user = info.st_uid;
 				gid_t group = info.st_gid;
 				stat(path, &info);
-				printf("%hu %hu ", user, group);
+				printf("%u %u ", user, group);
 			}
 			
 			printf("%s%s\n", color, entry_name.c_str());
