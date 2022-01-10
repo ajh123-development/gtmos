@@ -19,19 +19,34 @@
 
 #pragma once
 
-#include "types.h"
+#include <functional>
+#include <utility>
+#include <libduck/Time.h>
 
-namespace Term {
-	class Listener {
+namespace UI {
+	class Timeout {
 	public:
-		virtual void on_character_change(const Position& position, const Character& character) = 0;
-		virtual void on_cursor_change(const Position& old_position) = 0;
-		virtual void on_backspace(const Position& position) = 0;
-		virtual void on_clear() = 0;
-		virtual void on_clear_line(int line) = 0;
-		virtual void on_scroll(int lines) = 0;
-		virtual void on_resize(const Size& old_size, const Size& new_size) = 0;
-		virtual void emit(const uint8_t* data, size_t length) = 0;
+		Timeout() = default;
+
+		Timeout(int delay, std::function<void()> call, bool is_interval): delay(delay), call(std::move(call)), is_interval(is_interval) {
+			calculate_trigger_time();
+		}
+
+		void calculate_trigger_time() {
+			trigger_time = Duck::Time::now() + Duck::Time::millis(delay);
+		}
+
+		[[nodiscard]] bool ready() const {
+			return millis_until_ready() <= 0;
+		}
+
+		[[nodiscard]] long millis_until_ready() const {
+			return (trigger_time - Duck::Time::now()).millis();
+		}
+
+		int delay = -1;
+		std::function<void()> call = nullptr;
+		Duck::Time trigger_time = {0, 0};
+		bool is_interval = false;
 	};
 }
-
