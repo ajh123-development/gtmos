@@ -1,3 +1,8 @@
 *.iso
 isodir
 sysroot
+
+toolchain/*
+!toolchain/build.sh
+!toolchain/binutils-2.32.patch
+!toolchain/gcc-9.1.0.patch
