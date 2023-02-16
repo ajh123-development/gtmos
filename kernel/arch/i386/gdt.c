@@ -1,4 +1,4 @@
-#include "gtd.h"
+#include "gdt.h"
 
 #include <stdint.h>
 
@@ -90,6 +90,6 @@ GDTDescriptor g_GDTDescriptor = { sizeof(g_GDT) - 1, g_GDT};
 void __attribute__((cdecl)) GDT_Load(GDTDescriptor* descriptor, uint16_t codeSegment, uint16_t dataSegment);
 
 
-void loadGDT() {
-    GDT_Load(&g_GDTDescriptor, i686_GDT_CODE_SEGMENT, i686_GDT_DATA_SEGMENT);
+void GDT_Initialize() {
+    GDT_Load(&g_GDTDescriptor, GDT_CODE_SEGMENT, GDT_DATA_SEGMENT);
 }

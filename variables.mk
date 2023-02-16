@@ -25,6 +25,7 @@ INCLUDEDIR=${PREFIX}/include
 AR=${HOST}-ar
 AS=${HOST}-as
 CC=${HOST}-gcc
+ASM=nasm -f elf32
 
 CC:=${CC} --sysroot=${SYSROOT}
 # Work around that the -elf gcc targets doesn't have a system include directory
