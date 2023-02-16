@@ -27,7 +27,7 @@ void logf(const char* module, DebugLevel level, const char* fmt, ...)
     fprintf(VFS_FD_DEBUG, "[%s] ", module);             // write module
     fprintf(VFS_FD_DEBUG, fmt, args);                  // write text
     fputs(VFS_FD_DEBUG, g_ColorReset);                  // reset format
-    fputchar(VFS_FD_DEBUG, '\n');                          // newline
+    // fputchar(VFS_FD_DEBUG, '\n');                          // newline
 
     va_end(args);  
 }
