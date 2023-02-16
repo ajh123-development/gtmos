@@ -1,0 +1,11 @@
+#ifndef _KERNEL_VFS_H
+#define _KERNEL_VFS_H
+
+#include <stdint.h>
+#include <stddef.h>
+#include <gtmos/vfs.h>
+
+int vfs_write(fd_t file, uint8_t* data, size_t size);
+
+
+#endif /* _KERNEL_VFS_H */

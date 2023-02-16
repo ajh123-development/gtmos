@@ -4,15 +4,31 @@
 #include <stdio.h>
 #include <string.h>
 
-static bool print(const char* data, size_t length) {
+static bool fprint(fd_t file, const char* data, size_t length) {
 	const unsigned char* bytes = (const unsigned char*) data;
 	for (size_t i = 0; i < length; i++)
-		if (putchar(bytes[i]) == EOF)
+		if (fputchar(file, bytes[i]) == EOF)
 			return false;
 	return true;
 }
 
 int printf(const char* restrict format, ...) {
+	va_list parameters;
+	va_start(parameters, format);
+	int result = fprintf(VFS_FD_STDOUT, format, parameters);
+	va_end(parameters);
+	return result;
+}
+
+int debug_printf(const char* restrict format, ...) {
+	va_list parameters;
+	va_start(parameters, format);
+	int result = fprintf(VFS_FD_DEBUG, format, parameters);
+	va_end(parameters);
+	return result;
+}
+
+int fprintf(fd_t file, const char* restrict format, ...) {
 	va_list parameters;
 	va_start(parameters, format);
 
@@ -31,7 +47,7 @@ int printf(const char* restrict format, ...) {
 				// TODO: Set errno to EOVERFLOW.
 				return -1;
 			}
-			if (!print(format, amount))
+			if (!fprint(file, format, amount))
 				return -1;
 			format += amount;
 			written += amount;
@@ -47,7 +63,7 @@ int printf(const char* restrict format, ...) {
 				// TODO: Set errno to EOVERFLOW.
 				return -1;
 			}
-			if (!print(&c, sizeof(c)))
+			if (!fprint(file, &c, sizeof(c)))
 				return -1;
 			written++;
 		} else if (*format == 's') {
@@ -58,7 +74,7 @@ int printf(const char* restrict format, ...) {
 				// TODO: Set errno to EOVERFLOW.
 				return -1;
 			}
-			if (!print(str, len))
+			if (!fprint(file, str, len))
 				return -1;
 			written += len;
 		} else {
@@ -68,7 +84,7 @@ int printf(const char* restrict format, ...) {
 				// TODO: Set errno to EOVERFLOW.
 				return -1;
 			}
-			if (!print(format, len))
+			if (!fprint(file, format, len))
 				return -1;
 			written += len;
 			format += len;

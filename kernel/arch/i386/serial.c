@@ -102,5 +102,5 @@ void serial_write(unsigned short com, const char* data, size_t size){
 		serial_putchar(com, data[i]);
 }
 void serial_writestring(unsigned short com, const char* data){
-	serial_write(com, data, strlen(data));
+	serial_write(com, data, sizeof(data));
 }

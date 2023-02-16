@@ -18,5 +18,5 @@ outb:
 #        [esp    ] The return address
 inb:
     movw 4(%esp),%dx        # move the address of the I/O port to the dx register
-    in %dx,%al             # read a byte from the I/O port and store it in the al register
+    in %dx,%al              # read a byte from the I/O port and store it in the al register
     ret                     # return the read byte

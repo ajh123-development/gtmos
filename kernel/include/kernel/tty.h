@@ -30,7 +30,7 @@ void terminal_putchar(char c);
  *  reached.
  * 
  *  @param data The character buffer to display
- *  @param size The ammount of character you want to use 
+ *  @param size The amount of character you want to use 
  *              from the buffer
  */
 void terminal_write(const char* data, size_t size);

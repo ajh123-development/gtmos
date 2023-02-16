@@ -28,7 +28,7 @@ void serial_putchar(unsigned short com, char c);
  *
  *  @param com  The com port to communicate on
  *  @param data The character buffer to display
- *  @param size The ammount of character you want to use 
+ *  @param size The amount of character you want to use 
  *              from the buffer
  */
 void serial_write(unsigned short com, const char* data, size_t size);
