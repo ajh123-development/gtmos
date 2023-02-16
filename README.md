@@ -20,6 +20,6 @@ This build requires a GNU/Linux system, or a similar enough system. The BSD syst
 Install the i686-elf toolchain as described [here](https://github.com/lordmilko/i686-elf-tools) or [here](https://wiki.osdev.org/Meaty_Skeleton#Building_a_Cross-Compiler) and then install the packages `xorriso` `grub-pc-bin`.
 
 ### The real build
-The `qemu.sh` script can be used to complie the os, build an iso image and run QEMU all at once.
+To build the OS simply run the `iso` make target. This will compile / link and generate a bootable iso. If you don't need an iso use the `all` target.
 
-The `iso.sh` script can be used to build an iso image without launching QEMU!
+Finally, the `qemu` target can be used to run QEMU. It will run the `iso` target it self if the iso hasn't been made yet.
