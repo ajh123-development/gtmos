@@ -18,6 +18,7 @@ LIBK_CPPFLAGS:=$(LIBK_CPPFLAGS) $(KERNEL_ARCH_CPPFLAGS)
 
 FREEOBJS=\
 $(ARCH_FREEOBJS) \
+gtmos/logging.o \
 stdio/printf.o \
 stdio/putchar.o \
 stdio/puts.o \
