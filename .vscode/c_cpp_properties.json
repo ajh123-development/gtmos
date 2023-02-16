@@ -1,12 +1,14 @@
 {
     "configurations": [
-      {
-        "name": "GTMOS Development",
-        "includePath": ["${workspaceFolder}/sysroot/usr/include"],
-        "cStandard": "c11",
-        "cppStandard": "c++14",
-        "IntelliSenseMode": "gcc-arm"
-      }
+        {
+            "name": "GTMOS Development",
+            "includePath": [
+                "${workspaceFolder}/sysroot/usr/include"
+            ],
+            "cStandard": "c11",
+            "cppStandard": "c++14",
+            "configurationProvider": "ms-vscode.makefile-tools"
+        }
     ],
     "version": 4
 }

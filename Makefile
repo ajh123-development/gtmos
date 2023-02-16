@@ -43,7 +43,7 @@ clean:
 	rm -rf ${ROOT_DIR}/gtmos.iso
 
 qemu: iso
-	qemu-system-${HOSTARCH} -cdrom ${ROOT_DIR}/gtmos.iso
+	qemu-system-${HOSTARCH} -cdrom ${ROOT_DIR}/gtmos.iso -serial stdio
 
 .ONESHELL:
 iso: all

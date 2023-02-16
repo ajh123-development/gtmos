@@ -23,3 +23,7 @@ Install the i686-elf toolchain as described [here](https://github.com/lordmilko/
 To build the OS simply run the `iso` make target. This will compile / link and generate a bootable iso. If you don't need an iso use the `all` target.
 
 Finally, the `qemu` target can be used to run QEMU. It will run the `iso` target it self if the iso hasn't been made yet.
+
+# Resources used
+* [The little book about OS development](http://littleosbook.github.io/)
+* [OSDev.org](https://wiki.osdev.org/)

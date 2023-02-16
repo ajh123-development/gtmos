@@ -3,6 +3,7 @@
 #include <stdint.h>
 #include <string.h>
 
+#include <kernel/io.h>
 #include <kernel/tty.h>
 
 #include "vga.h"
@@ -55,4 +56,12 @@ void terminal_write(const char* data, size_t size) {
 
 void terminal_writestring(const char* data) {
 	terminal_write(data, strlen(data));
+}
+
+void terminal_movecursor(unsigned short pos)
+{
+    outb(FB_COMMAND_PORT, FB_HIGH_BYTE_COMMAND);
+    outb(FB_DATA_PORT,    ((pos >> 8) & 0x00FF));
+    outb(FB_COMMAND_PORT, FB_LOW_BYTE_COMMAND);
+    outb(FB_DATA_PORT,    pos & 0x00FF);
 }
