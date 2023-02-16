@@ -1,0 +1,12 @@
+{
+    "configurations": [
+      {
+        "name": "GTMOS Development",
+        "includePath": ["${workspaceFolder}/sysroot/usr/include"],
+        "cStandard": "c11",
+        "cppStandard": "c++14",
+        "IntelliSenseMode": "gcc-arm"
+      }
+    ],
+    "version": 4
+}
