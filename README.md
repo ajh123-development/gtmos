@@ -27,3 +27,4 @@ Finally, the `qemu` target can be used to run QEMU. It will run the `iso` target
 # Resources used
 * [The little book about OS development](http://littleosbook.github.io/)
 * [OSDev.org](https://wiki.osdev.org/)
+* [Nanobyte OS](https://github.com/nanobyte-dev/nanobyte_os)
