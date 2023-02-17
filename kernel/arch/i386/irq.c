@@ -10,7 +10,7 @@
 #include <gtmos/arrays.h>
 
 #define PIC_REMAP_OFFSET        0x20
-#define MODULE                  "PIC"
+#define MODULE                  "i386/PIC"
 
 IRQHandler g_IRQHandlers[16];
 static const PICDriver* g_Driver = NULL;

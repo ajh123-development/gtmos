@@ -25,11 +25,14 @@ INCLUDEDIR=${PREFIX}/include
 AR=${HOST}-ar
 AS=${HOST}-as
 CC=${HOST}-gcc
+CXX=${HOST}-g++
 ASM=nasm -f elf32
 
 CC:=${CC} --sysroot=${SYSROOT}
+CXX:=${CXX} --sysroot=${SYSROOT}
 # Work around that the -elf gcc targets doesn't have a system include directory
 # because it was configured with --without-headers rather than --with-sysroot.
 ifneq (,$(findstring -elf,$(HOST)))
     CC:=${CC} -isystem=${INCLUDEDIR}
+    CXX:=${CXX} -isystem=${INCLUDEDIR}
 endif

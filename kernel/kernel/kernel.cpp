@@ -1,12 +1,14 @@
 #include <stdio.h>
 
+extern "C" {
 #include <kernel/tty.h>
 #include <kernel/serial.h>
 #include <gtmos/logging.h>
 #include <kernel/arch/arch.h>
 #include <stdlib.h>
+}
 
-void kernel_main(void) {
+extern "C" void kernel_main(void) {
 	serial_initialize(SERIAL_COM1_BASE);
 	int ok = arch_init();
 	if (ok == 1) {

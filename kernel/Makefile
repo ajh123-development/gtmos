@@ -18,7 +18,7 @@ LIBS:=$(LIBS) $(KERNEL_ARCH_LIBS)
 
 KERNEL_OBJS=\
 $(KERNEL_ARCH_OBJS) \
-kernel/kernel.o \
+${PWD}/kernel/kernel.o \
 
 OBJS=\
 $(ARCHDIR)/crti.o \
@@ -37,7 +37,7 @@ $(ARCHDIR)/crtend.o \
 $(ARCHDIR)/crtn.o \
 
 .PHONY: all clean install install-headers install-kernel
-.SUFFIXES: .o .c .S
+.SUFFIXES: .o .c .cpp .S
 
 all: gtmos.kernel
 
@@ -50,6 +50,10 @@ $(ARCHDIR)/crtbegin.o $(ARCHDIR)/crtend.o:
 
 .c.o:
 	$(CC) -MD -c $< -o $@ -std=gnu11 $(CFLAGS) $(CPPFLAGS)
+
+.cpp.o:
+	$(CXX) -MD -c $< -o $@ -std=c++11 $(CFLAGS) $(CPPFLAGS)
+
 
 .S.o:
 	$(ASM) $< -o $@
