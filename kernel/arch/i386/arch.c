@@ -4,6 +4,7 @@
 #include "gdt.h"
 #include "idt.h"
 #include "isr.h"
+#include "irq.h"
 #include "vga.h"
 #include "tty.h"
 
@@ -15,6 +16,8 @@ int arch_init() {
     log_info("i386/IDT", "The Interrupt Descriptor Table has loaded corectly!");
     ISR_Initialize();
     log_info("i386/ISR", "The Interrupt Service Routines have loaded corectly!");
+    IRQ_Initialize();
+    log_info("i386/IRQ", "The Interrupt Requets have loaded corectly!");
     log_ok("i386", "The i386 subsytem has loaded corectly!");
     return 0;
 }
