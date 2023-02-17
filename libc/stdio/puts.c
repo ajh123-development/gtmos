@@ -1,13 +1,20 @@
 #include <stdio.h>
 
-int puts(const char* string) {
-	return printf("%s\n", string);
+void fputs(const char* str, fd_t file)
+{
+    while(*str)
+    {
+        fputc(*str, file);
+        str++;
+    }
 }
 
-int debug_puts(const char* string) {
-	return debug_printf("%s\n", string);
+void puts(const char* str)
+{
+    fputs(str, VFS_FD_STDOUT);
 }
 
-int fputs(fd_t file, const char* string) {
-	return fprintf(file, "%s\n", string);
+void debugs(const char* str)
+{
+    fputs(str, VFS_FD_DEBUG);
 }

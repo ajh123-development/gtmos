@@ -4,6 +4,7 @@
 #include <kernel/serial.h>
 #include <gtmos/logging.h>
 #include <kernel/arch/arch.h>
+#include <stdlib.h>
 
 void kernel_main(void) {
 	serial_initialize(SERIAL_COM1_BASE);
@@ -18,4 +19,6 @@ void kernel_main(void) {
 
 	log_ok("Serial", "Welcome to GTMOS! The serial logging console has loaded!");
 	printf("Hello, GTMOS World!\n");
+
+	abort();
 }

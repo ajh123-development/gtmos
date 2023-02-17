@@ -3,94 +3,221 @@
 #include <stdarg.h>
 #include <stdio.h>
 #include <string.h>
+#include <stdarg.h>
+#include <stdbool.h>
+#include <stdint.h>
 
-static bool fprint(fd_t file, const char* data, size_t length) {
-	const unsigned char* bytes = (const unsigned char*) data;
-	for (size_t i = 0; i < length; i++)
-		if (fputchar(file, bytes[i]) == EOF)
-			return false;
-	return true;
+#define PRINTF_STATE_NORMAL         0
+#define PRINTF_STATE_LENGTH         1
+#define PRINTF_STATE_LENGTH_SHORT   2
+#define PRINTF_STATE_LENGTH_LONG    3
+#define PRINTF_STATE_SPEC           4
+
+#define PRINTF_LENGTH_DEFAULT       0
+#define PRINTF_LENGTH_SHORT_SHORT   1
+#define PRINTF_LENGTH_SHORT         2
+#define PRINTF_LENGTH_LONG          3
+#define PRINTF_LENGTH_LONG_LONG     4
+
+const char g_HexChars[] = "0123456789abcdef";
+
+void fprintf_unsigned(fd_t file, unsigned long long number, int radix) {
+    char buffer[32];
+    int pos = 0;
+
+    // convert number to ASCII
+    do 
+    {
+        unsigned long long rem = number % radix;
+        number /= radix;
+        buffer[pos++] = g_HexChars[rem];
+    } while (number > 0);
+
+    // print number in reverse order
+    while (--pos >= 0)
+        fputc(buffer[pos], file);
 }
 
-int printf(const char* restrict format, ...) {
-	va_list parameters;
-	va_start(parameters, format);
-	int result = fprintf(VFS_FD_STDOUT, format, parameters);
-	va_end(parameters);
-	return result;
+void fprintf_signed(fd_t file, long long number, int radix) {
+    if (number < 0)
+    {
+        fputc('-', file);
+        fprintf_unsigned(file, -number, radix);
+    }
+    else fprintf_unsigned(file, number, radix);
 }
 
-int debug_printf(const char* restrict format, ...) {
-	va_list parameters;
-	va_start(parameters, format);
-	int result = fprintf(VFS_FD_DEBUG, format, parameters);
-	va_end(parameters);
-	return result;
+void vfprintf(fd_t file, const char* fmt, va_list args) {
+    int state = PRINTF_STATE_NORMAL;
+    int length = PRINTF_LENGTH_DEFAULT;
+    int radix = 10;
+    bool sign = false;
+    bool number = false;
+
+    while (*fmt)
+    {
+        switch (state)
+        {
+            case PRINTF_STATE_NORMAL:
+                switch (*fmt)
+                {
+                    case '%':   state = PRINTF_STATE_LENGTH;
+                                break;
+                    default:    fputc(*fmt, file);
+                                break;
+                }
+                break;
+
+            case PRINTF_STATE_LENGTH:
+                switch (*fmt)
+                {
+                    case 'h':   length = PRINTF_LENGTH_SHORT;
+                                state = PRINTF_STATE_LENGTH_SHORT;
+                                break;
+                    case 'l':   length = PRINTF_LENGTH_LONG;
+                                state = PRINTF_STATE_LENGTH_LONG;
+                                break;
+                    default:    goto PRINTF_STATE_SPEC_;
+                }
+                break;
+
+            case PRINTF_STATE_LENGTH_SHORT:
+                if (*fmt == 'h')
+                {
+                    length = PRINTF_LENGTH_SHORT_SHORT;
+                    state = PRINTF_STATE_SPEC;
+                }
+                else goto PRINTF_STATE_SPEC_;
+                break;
+
+            case PRINTF_STATE_LENGTH_LONG:
+                if (*fmt == 'l')
+                {
+                    length = PRINTF_LENGTH_LONG_LONG;
+                    state = PRINTF_STATE_SPEC;
+                }
+                else goto PRINTF_STATE_SPEC_;
+                break;
+
+            case PRINTF_STATE_SPEC:
+            PRINTF_STATE_SPEC_:
+                switch (*fmt)
+                {
+                    case 'c':   fputc((char)va_arg(args, int), file);
+                                break;
+
+                    case 's':   
+                                fputs(va_arg(args, const char*), file);
+                                break;
+
+                    case '%':   fputc('%', file);
+                                break;
+
+                    case 'd':
+                    case 'i':   radix = 10; sign = true; number = true;
+                                break;
+
+                    case 'u':   radix = 10; sign = false; number = true;
+                                break;
+
+                    case 'X':
+                    case 'x':
+                    case 'p':   radix = 16; sign = false; number = true;
+                                break;
+
+                    case 'o':   radix = 8; sign = false; number = true;
+                                break;
+
+                    // ignore invalid spec
+                    default:    break;
+                }
+
+                if (number)
+                {
+                    if (sign)
+                    {
+                        switch (length)
+                        {
+                        case PRINTF_LENGTH_SHORT_SHORT:
+                        case PRINTF_LENGTH_SHORT:
+                        case PRINTF_LENGTH_DEFAULT:     fprintf_signed(file, va_arg(args, int), radix);
+                                                        break;
+
+                        case PRINTF_LENGTH_LONG:        fprintf_signed(file, va_arg(args, long), radix);
+                                                        break;
+
+                        case PRINTF_LENGTH_LONG_LONG:   fprintf_signed(file, va_arg(args, long long), radix);
+                                                        break;
+                        }
+                    }
+                    else
+                    {
+                        switch (length)
+                        {
+                        case PRINTF_LENGTH_SHORT_SHORT:
+                        case PRINTF_LENGTH_SHORT:
+                        case PRINTF_LENGTH_DEFAULT:     fprintf_unsigned(file, va_arg(args, unsigned int), radix);
+                                                        break;
+                                                        
+                        case PRINTF_LENGTH_LONG:        fprintf_unsigned(file, va_arg(args, unsigned  long), radix);
+                                                        break;
+
+                        case PRINTF_LENGTH_LONG_LONG:   fprintf_unsigned(file, va_arg(args, unsigned  long long), radix);
+                                                        break;
+                        }
+                    }
+                }
+
+                // reset state
+                state = PRINTF_STATE_NORMAL;
+                length = PRINTF_LENGTH_DEFAULT;
+                radix = 10;
+                sign = false;
+                number = false;
+                break;
+        }
+
+        fmt++;
+    }
 }
 
-int fprintf(fd_t file, const char* restrict format, ...) {
-	va_list parameters;
-	va_start(parameters, format);
+void fprintf(fd_t file, const char* fmt, ...) {
+    va_list args;
+    va_start(args, fmt);
+    vfprintf(file, fmt, args);
+    va_end(args);
+}
 
-	int written = 0;
+void fprint_buffer(fd_t file, const char* msg, const void* buffer, uint32_t count) {
+    const uint8_t* u8Buffer = (const uint8_t*)buffer;
+    
+    fputs(msg, file);
+    for (uint16_t i = 0; i < count; i++)
+    {
+        fputc(g_HexChars[u8Buffer[i] >> 4], file);
+        fputc(g_HexChars[u8Buffer[i] & 0xF], file);
+    }
+    fputs("\n", file);
+}
 
-	while (*format != '\0') {
-		size_t maxrem = INT_MAX - written;
+void printf(const char* fmt, ...) {
+    va_list args;
+    va_start(args, fmt);
+    vfprintf(VFS_FD_STDOUT, fmt, args);
+    va_end(args);
+}
 
-		if (format[0] != '%' || format[1] == '%') {
-			if (format[0] == '%')
-				format++;
-			size_t amount = 1;
-			while (format[amount] && format[amount] != '%')
-				amount++;
-			if (maxrem < amount) {
-				// TODO: Set errno to EOVERFLOW.
-				return -1;
-			}
-			if (!fprint(file, format, amount))
-				return -1;
-			format += amount;
-			written += amount;
-			continue;
-		}
+void print_buffer(const char* msg, const void* buffer, uint32_t count) {
+    fprint_buffer(VFS_FD_STDOUT, msg, buffer, count);
+}
 
-		const char* format_begun_at = format++;
+void debugf(const char* fmt, ...) {
+    va_list args;
+    va_start(args, fmt);
+    vfprintf(VFS_FD_DEBUG, fmt, args);
+    va_end(args);
+}
 
-		if (*format == 'c') {
-			format++;
-			char c = (char) va_arg(parameters, int /* char promotes to int */);
-			if (!maxrem) {
-				// TODO: Set errno to EOVERFLOW.
-				return -1;
-			}
-			if (!fprint(file, &c, sizeof(c)))
-				return -1;
-			written++;
-		} else if (*format == 's') {
-			format++;
-			const char* str = va_arg(parameters, const char*);
-			size_t len = strlen(str);
-			if (maxrem < len) {
-				// TODO: Set errno to EOVERFLOW.
-				return -1;
-			}
-			if (!fprint(file, str, len))
-				return -1;
-			written += len;
-		} else {
-			format = format_begun_at;
-			size_t len = strlen(format);
-			if (maxrem < len) {
-				// TODO: Set errno to EOVERFLOW.
-				return -1;
-			}
-			if (!fprint(file, format, len))
-				return -1;
-			written += len;
-			format += len;
-		}
-	}
-
-	va_end(parameters);
-	return written;
+void debug_buffer(const char* msg, const void* buffer, uint32_t count) {
+    fprint_buffer(VFS_FD_DEBUG, msg, buffer, count);
 }

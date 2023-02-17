@@ -23,11 +23,11 @@ void logf(const char* module, DebugLevel level, const char* fmt, ...)
     if (level < MIN_LOG_LEVEL)
         return;
 
-    fputs(VFS_FD_DEBUG,  g_LogSeverityColors[level]);    // set color depending on level
+    fputs(g_LogSeverityColors[level], VFS_FD_DEBUG);    // set color depending on level
     fprintf(VFS_FD_DEBUG, "[%s] ", module);             // write module
-    fprintf(VFS_FD_DEBUG, fmt, args);                  // write text
-    fputs(VFS_FD_DEBUG, g_ColorReset);                  // reset format
-    // fputchar(VFS_FD_DEBUG, '\n');                          // newline
+    vfprintf(VFS_FD_DEBUG, fmt, args);                  // write text
+    fputs(g_ColorReset, VFS_FD_DEBUG);                  // reset format
+    fputc('\n', VFS_FD_DEBUG);                          // newline
 
     va_end(args);  
 }
