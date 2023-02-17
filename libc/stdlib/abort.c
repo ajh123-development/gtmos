@@ -1,10 +1,11 @@
 #include <stdio.h>
 #include <stdlib.h>
+#include <kernel/arch/arch.h>
 
 __attribute__((__noreturn__))
 void abort(void) {
 #if defined(__is_libk)
-	*(int*)0=0; // cause a crash
+	panic("  The system has aborted unexceptdly.");
 #else
 	// TODO: Abnormally terminate the process as if by SIGABRT.
 	printf("abort()\n");

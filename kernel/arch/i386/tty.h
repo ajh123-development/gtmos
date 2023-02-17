@@ -1,5 +1,5 @@
-#ifndef _KERNEL_TTY_H
-#define _KERNEL_TTY_H
+#ifndef ARCH_I386_TTY_H
+#define ARCH_I386_TTY_H
 
 #include <kernel/io.h>
 #include <kernel/tty.h>

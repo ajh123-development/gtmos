@@ -11,14 +11,15 @@ void kernel_main(void) {
 	int ok = arch_init();
 	if (ok == 1) {
 		log_crit("CPU", "The cpu subsytem failed to load!");
+		panic("The cpu subsytem failed to load!");
 		return;
 	}
 
 	terminal_initialize();
-	terminal_movecursor(0x100);
 
 	log_ok("Serial", "Welcome to GTMOS! The serial logging console has loaded!");
 	printf("Hello, GTMOS World!\n");
 
-	abort();
+	// *(int*)0=0; // cause a crash
+	// abort(); // abort the kernel
 }

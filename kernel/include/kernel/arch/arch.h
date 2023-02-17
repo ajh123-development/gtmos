@@ -3,5 +3,6 @@
 
 int arch_init();
 
+void panic(const char* fmt, ...);
 
 #endif /* _KERNEL_ARCH_H */
