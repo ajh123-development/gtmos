@@ -29,7 +29,7 @@ CXX=${HOST}-g++
 ASM=nasm -f elf32
 
 CC:=${CC} --sysroot=${SYSROOT}
-CXX:=${CXX} --sysroot=${SYSROOT}
+CXX:=${CXX} --sysroot=${SYSROOT} -fno-rtti -fno-exceptions
 # Work around that the -elf gcc targets doesn't have a system include directory
 # because it was configured with --without-headers rather than --with-sysroot.
 ifneq (,$(findstring -elf,$(HOST)))

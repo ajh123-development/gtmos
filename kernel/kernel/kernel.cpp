@@ -5,6 +5,9 @@
 #include <gtmos/logging.h>
 #include <kernel/arch/arch.h>
 #include <stdlib.h>
+// #include <kernel/device/device.h>
+
+// DeviceManager* deviceManager = new DeviceManager();
 
 extern "C" void kernel_main(void) {
 	serial_initialize(SERIAL_COM1_BASE);
@@ -23,3 +26,7 @@ extern "C" void kernel_main(void) {
 	// *(int*)0=0; // cause a crash
 	// abort(); // abort the kernel
 }
+
+// DeviceManager* GetDeviceManager() {
+// 	return deviceManager;
+// }
