@@ -1,6 +1,10 @@
 #ifndef _KERNEL_SERIAL_H
 #define _KERNEL_SERIAL_H
 
+#ifdef __cplusplus
+extern "C" {
+#endif
+
 #include <kernel/io.h>
 #include <stddef.h>
 
@@ -41,5 +45,9 @@ void serial_write(unsigned short com, const char* data, size_t size);
  *  @param data The character buffer to display
  */
 void serial_writestring(unsigned short com, const char* data);
+
+#ifdef __cplusplus
+}
+#endif
 
 #endif /* _KERNEL_SERIAL_H */

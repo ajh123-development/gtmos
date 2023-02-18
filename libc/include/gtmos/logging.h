@@ -14,6 +14,10 @@ typedef enum {
     LVL_CRITICAL = 5
 } DebugLevel;
 
+#ifdef __cplusplus
+extern "C" {
+#endif
+
 void logf(const char* module, DebugLevel level, const char* fmt, ...);
 #define log_debug(module, ...) logf(module, LVL_DEBUG, __VA_ARGS__)
 #define log_info(module, ...) logf(module, LVL_INFO, __VA_ARGS__)
@@ -21,5 +25,9 @@ void logf(const char* module, DebugLevel level, const char* fmt, ...);
 #define log_err(module, ...) logf(module, LVL_ERROR, __VA_ARGS__)
 #define log_crit(module, ...) logf(module, LVL_CRITICAL, __VA_ARGS__)
 #define log_ok(module, ...) logf(module, LVL_OK, __VA_ARGS__)
+
+#ifdef __cplusplus
+}
+#endif
 
 #endif /* _GTMOS_LOGGING_H */

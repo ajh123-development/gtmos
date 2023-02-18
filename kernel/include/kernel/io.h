@@ -1,6 +1,11 @@
 #ifndef _KERNEL_IO_H
 #define _KERNEL_IO_H
 
+#ifdef __cplusplus
+extern "C" {
+#endif
+
+
 /** outb:
  *  Sends the given data to the given I/O port. Defined in io.s
  *
@@ -18,5 +23,10 @@ void outb(unsigned short port, unsigned char data);
 unsigned char inb(unsigned short port);
 
 void iowait();
+
+#ifdef __cplusplus
+}
+#endif
+
 
 #endif /* _KERNEL_IO_H */

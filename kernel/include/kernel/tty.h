@@ -1,6 +1,10 @@
 #ifndef _KERNEL_TTY_H
 #define _KERNEL_TTY_H
 
+#ifdef __cplusplus
+extern "C" {
+#endif
+
 #include <kernel/io.h>
 #include <stddef.h>
 
@@ -51,5 +55,9 @@ void terminal_writestring(const char* data);
  *  @param pos The new position of the cursor
  */
 void terminal_movecursor(unsigned short pos);
+
+#ifdef __cplusplus
+}
+#endif
 
 #endif /* _KERNEL_TTY_H */

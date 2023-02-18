@@ -9,7 +9,7 @@
                 "__is_libk"
             ],
             "cStandard": "gnu11",
-            "cppStandard": "c++14",
+            "cppStandard": "c++11",
             "configurationProvider": "ms-vscode.makefile-tools"
         },
         {
@@ -18,7 +18,7 @@
                 "${workspaceFolder}/sysroot/usr/include"
             ],
             "cStandard": "gnu11",
-            "cppStandard": "c++14",
+            "cppStandard": "c++11",
             "configurationProvider": "ms-vscode.makefile-tools"
         }
     ],
