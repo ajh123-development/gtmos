@@ -44,7 +44,10 @@ BINARIES=libk.a
 .PHONY: all clean install install-headers install-libs
 .SUFFIXES: .o .libk.o .c .cpp .S
 
-all: $(BINARIES)
+limine.h:
+	curl https://raw.githubusercontent.com/limine-bootloader/limine/trunk/limine.h -o include/gtmos/$@
+
+all: limine.h $(BINARIES)
 
 libc.a: $(OBJS)
 	$(AR) rcs $@ $(OBJS)
@@ -77,7 +80,7 @@ clean:
 
 install: install-headers install-libs
 
-install-headers:
+install-headers: limine.h
 	mkdir -p $(DESTDIR)$(INCLUDEDIR)
 	cp -R --preserve=timestamps include/. $(DESTDIR)$(INCLUDEDIR)/.
 

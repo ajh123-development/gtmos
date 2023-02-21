@@ -9,7 +9,6 @@
 #include <gtmos/logging.h>
 #include <gtmos/arrays.h>
 
-#define PIC_REMAP_OFFSET        0x20
 #define MODULE                  "i386/PIC"
 
 IRQHandler g_IRQHandlers[16];

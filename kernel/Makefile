@@ -21,29 +21,20 @@ $(KERNEL_ARCH_OBJS) \
 ${PWD}/kernel/kernel.o \
 
 OBJS=\
-$(ARCHDIR)/crti.o \
-$(ARCHDIR)/crtbegin.o \
 $(KERNEL_OBJS) \
-$(ARCHDIR)/crtend.o \
-$(ARCHDIR)/crtn.o \
 
 LINK_LIST=\
 $(LDFLAGS) \
-$(ARCHDIR)/crti.o \
-$(ARCHDIR)/crtbegin.o \
 $(KERNEL_OBJS) \
 $(LIBS) \
-$(ARCHDIR)/crtend.o \
-$(ARCHDIR)/crtn.o \
 
 .PHONY: all clean install install-headers install-kernel
 .SUFFIXES: .o .c .cpp .S
 
-all: gtmos.kernel
+all: gtmos.elf
 
-gtmos.kernel: $(OBJS) $(ARCHDIR)/linker.ld
+gtmos.elf: $(OBJS) $(ARCHDIR)/linker.ld
 	$(CC) -T $(ARCHDIR)/linker.ld -o $@ $(CFLAGS) $(LINK_LIST)
-	grub-file --is-x86-multiboot gtmos.kernel
 
 $(ARCHDIR)/crtbegin.o $(ARCHDIR)/crtend.o:
 	OBJ=`$(CC) $(CFLAGS) $(LDFLAGS) -print-file-name=$(@F)` && cp "$$OBJ" $@
@@ -59,7 +50,7 @@ $(ARCHDIR)/crtbegin.o $(ARCHDIR)/crtend.o:
 	$(ASM) $< -o $@
 
 clean:
-	rm -f gtmos.kernel
+	rm -f gtmos.elf
 	rm -f $(OBJS) *.o */*.o */*/*.o
 	rm -f $(OBJS:.o=.d) *.d */*.d */*/*.d
 
@@ -69,8 +60,9 @@ install-headers:
 	mkdir -p $(DESTDIR)$(INCLUDEDIR)
 	cp -R --preserve=timestamps include/. $(DESTDIR)$(INCLUDEDIR)/.
 
-install-kernel: gtmos.kernel
-	mkdir -p $(DESTDIR)$(BOOTDIR)
-	cp gtmos.kernel $(DESTDIR)$(BOOTDIR)
+install-kernel: gtmos.elf
+	mkdir -p $(BOOTDIR)
+	cp gtmos.elf $(BOOTDIR)
+	cp $(ROOT_DIR)/limine.cfg $(BOOTDIR)
 
 -include $(OBJS:.o=.d)

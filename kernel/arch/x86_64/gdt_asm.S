@@ -15,7 +15,7 @@ GDT_Load:
     ; reload code segment
     mov eax, [ebp + 12]
     push eax
-    push .reload_cs
+    call .reload_cs
     retf
 
 .reload_cs:

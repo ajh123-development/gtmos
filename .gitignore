@@ -1,6 +1,9 @@
 *.iso
-isodir
+iso_root
 sysroot
+bootroot
+limine
+ovmf-x64
 
 toolchain/*
 !toolchain/build.sh

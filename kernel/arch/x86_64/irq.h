@@ -3,6 +3,8 @@
 
 #include "isr.h"
 
+#define PIC_REMAP_OFFSET        0x20
+
 typedef void (*IRQHandler)(Registers* regs);
 
 void IRQ_Initialize();
