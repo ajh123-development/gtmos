@@ -16,19 +16,19 @@ extern "C" {
 #define FB_HIGH_BYTE_COMMAND    14
 #define FB_LOW_BYTE_COMMAND     15
 
-/** terminal_initialize:
+/** Term_Initialize:
  *  Initializes the terminal by clearing the screen.
  */
-void terminal_initialize(void);
+void Term_Initialize();
 
-/** terminal_putchar:
+/** Term_Putchar:
  *  Puts a character at the current terminal position.
  * 
  *  @param c The character to display
  */
-void terminal_putchar(char c);
+void Term_Putchar(char c);
 
-/** terminal_write:
+/** Term_Write:
  *  Puts a character buffer (a string) at the current 
  *  terminal position until a certain 'size' has been 
  *  reached.
@@ -37,24 +37,23 @@ void terminal_putchar(char c);
  *  @param size The amount of character you want to use 
  *              from the buffer
  */
-void terminal_write(const char* data, size_t size);
+void Term_Write(const char* data, size_t size);
 
-/** terminal_writestring:
+/** Term_WriteString:
  *  Puts a character buffer (a string) at the current 
  *  terminal position.
  * 
  *  @param data The character buffer to display
  */
-void terminal_writestring(const char* data);
+void Term_WriteString(const char* data);
 
-/** terminal_movecursor:
- *  Moves the cursor of the framebuffer to the given 
- *  position. Note this dose not move where the 
- *  terminal's cursor for writing is.
- *
- *  @param pos The new position of the cursor
+/** Term_Setpos:
+ *  Moves the current terminal position to a new one.
+ * 
+ *  @param x The x coordinate
+ *  @param y The y coordinate
  */
-void terminal_movecursor(unsigned short pos);
+void Term_Setpos(int x, int y);
 
 #ifdef __cplusplus
 }

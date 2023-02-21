@@ -9,7 +9,7 @@
 #include <gtmos/logging.h>
 #include <gtmos/arrays.h>
 
-#define MODULE                  "i386/PIC"
+#define MODULE                  "x86_64/PIC"
 
 IRQHandler g_IRQHandlers[16];
 static const PICDriver* g_Driver = NULL;
@@ -49,7 +49,7 @@ void IRQ_Initialize()
         return;
     }
 
-    log_info(MODULE, "Found `%s` PIC.", g_Driver->Name);
+    log_debug(MODULE, "Found `%s` PIC.", g_Driver->Name);
     g_Driver->Initialize(PIC_REMAP_OFFSET, PIC_REMAP_OFFSET + 8, false);
 
     // register ISR handlers for each of the 16 irq lines

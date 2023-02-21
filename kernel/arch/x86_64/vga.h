@@ -4,34 +4,23 @@
 #include <stdint.h>
 #include <string.h>
 
-static const size_t VGA_WIDTH = 80;
-static const size_t VGA_HEIGHT = 25;
-
 enum vga_color {
-	VGA_COLOR_BLACK = 0,
-	VGA_COLOR_BLUE = 1,
-	VGA_COLOR_GREEN = 2,
-	VGA_COLOR_CYAN = 3,
-	VGA_COLOR_RED = 4,
-	VGA_COLOR_MAGENTA = 5,
-	VGA_COLOR_BROWN = 6,
-	VGA_COLOR_LIGHT_GREY = 7,
-	VGA_COLOR_DARK_GREY = 8,
-	VGA_COLOR_LIGHT_BLUE = 9,
-	VGA_COLOR_LIGHT_GREEN = 10,
-	VGA_COLOR_LIGHT_CYAN = 11,
-	VGA_COLOR_LIGHT_RED = 12,
-	VGA_COLOR_LIGHT_MAGENTA = 13,
-	VGA_COLOR_LIGHT_BROWN = 14,
-	VGA_COLOR_WHITE = 15,
+	VGA_COLOR_BLACK = 0x000000,
+	VGA_COLOR_BLUE = 0x0000FF,
+	VGA_COLOR_GREEN = 0x00FF00,
+	VGA_COLOR_CYAN = 0x00FFFF,
+	VGA_COLOR_RED = 0xFF0000,
+	VGA_COLOR_MAGENTA = 0xFF00FF,
+	VGA_COLOR_BROWN = 0x964B00,
+	VGA_COLOR_LIGHT_GREY = 0xD3D3D3,
+	VGA_COLOR_DARK_GREY = 0x5A5A5A,
+	VGA_COLOR_LIGHT_BLUE = 0xADD8E6,
+	VGA_COLOR_LIGHT_GREEN = 0x90EE90,
+	VGA_COLOR_LIGHT_CYAN = 0xE0FFFF,
+	VGA_COLOR_LIGHT_RED = 0xFFCCCB,
+	VGA_COLOR_LIGHT_MAGENTA = 0xFF77FF,
+	VGA_COLOR_LIGHT_BROWN = 0xC4A484,
+	VGA_COLOR_WHITE = 0xFFFFFF,
 };
-
-static inline uint8_t vga_entry_color(enum vga_color fg, enum vga_color bg) {
-	return fg | bg << 4;
-}
-
-static inline uint16_t vga_entry(unsigned char uc, uint8_t color) {
-	return (uint16_t) uc | (uint16_t) color << 8;
-}
 
 #endif /* ARCH_I386_VGA_H */

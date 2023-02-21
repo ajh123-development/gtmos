@@ -9,6 +9,12 @@
 
 // DeviceManager* deviceManager = new DeviceManager();
 
+static void done(void) {
+    for (;;) {
+        asm("hlt");
+    }
+}
+
 extern "C" void kernel_main(void) {
 	serial_initialize(SERIAL_COM1_BASE);
 	int ok = arch_init();
@@ -18,13 +24,12 @@ extern "C" void kernel_main(void) {
 		return;
 	}
 
-	terminal_initialize();
+	Term_Initialize();
 
 	log_ok("Serial", "Welcome to GTMOS! The serial logging console has loaded!");
 	printf("Hello, GTMOS World!\n");
 
-	// *(int*)0=0; // cause a crash
-	// abort(); // abort the kernel
+	done();
 }
 
 // DeviceManager* GetDeviceManager() {

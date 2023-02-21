@@ -16,7 +16,7 @@ void debugc(char c) {
 void fputc(char c, fd_t file) {
 #if defined(__is_libk)
 	if (file == VFS_FD_STDOUT || file == VFS_FD_STDERR) {
-		terminal_write(&c, sizeof(c));
+		Term_Write(&c, sizeof(c));
 	}
 	if (file == VFS_FD_DEBUG) {
 		serial_write(SERIAL_COM1_BASE, &c, sizeof(c));

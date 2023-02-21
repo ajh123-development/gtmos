@@ -2,7 +2,6 @@
 #include "idt.h"
 #include "gdt.h"
 #include "vga.h"
-#include "tty.h"
 #include <kernel/tty.h>
 #include <kernel/arch/arch.h>
 #include <stdio.h>
@@ -61,7 +60,7 @@ void ISR_Initialize()
     IDT_DisableGate(0x80);
 }
 
-void __attribute__((cdecl)) ISR_Handler(Registers* regs)
+void ISR_Handler(Registers* regs)
 {
     if (g_ISRHandlers[regs->interrupt] != NULL)
         g_ISRHandlers[regs->interrupt](regs);
