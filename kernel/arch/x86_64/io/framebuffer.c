@@ -2,6 +2,7 @@
 #include <gtmos/kernel/device/tty.h>
 #include <gtmos/logging.h>
 #include <gtmos/limine.h>
+#include <gtmos/kernel/gui/pallete.h>
 
 #include "font.h"
 #include "vga.h"
@@ -15,7 +16,7 @@ struct limine_framebuffer *buffer;
 int ok = 0;
 int posX = 0;
 int posY = 0;
-uint32_t textColor = VGA_COLOR_BLACK;
+uint32_t textColor = VGA_COLOR_WHITE;
 
 void Buffer_Initialize() {
     if (buffer_request.response->framebuffer_count > 0) {
@@ -42,6 +43,16 @@ void Buffer_FillColor(uint32_t color) {
         {
             for (int x = 0; x < buffer->width; x++)
                 Buffer_PlotPixel(x, y, color);
+        }
+    }
+}
+
+void Buffer_FillRect(uint32_t color, int x, int y, int width, int height) {
+    if (ok) {
+        for (int iy = y; iy < y+height; iy++)
+        {
+            for (int ix = x; ix < x+width; ix++)
+                Buffer_PlotPixel(ix, iy, color);
         }
     }
 }
@@ -133,7 +144,7 @@ void Buffer_PlotLine(int x_start_pos, int y_start_pos, int x_end_pos, int y_end_
 
 void Term_Initialize() {
     Buffer_Initialize();
-    Buffer_FillColor(VGA_COLOR_WHITE);
+    Buffer_FillColor(DEFAULT_DESKTOP);
 }
 
 void Term_Setpos(int x, int y) {

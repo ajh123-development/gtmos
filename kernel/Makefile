@@ -19,6 +19,7 @@ LIBS:=$(LIBS) $(KERNEL_ARCH_LIBS)
 KERNEL_OBJS=\
 $(KERNEL_ARCH_OBJS) \
 ${PWD}/kernel/kernel.o \
+${PWD}/kernel/window.o \
 
 OBJS=\
 $(KERNEL_OBJS) \

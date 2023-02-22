@@ -4,6 +4,7 @@
 #include <gtmos/kernel/device/serial.h>
 #include <gtmos/logging.h>
 #include <gtmos/kernel/arch/arch.h>
+#include <gtmos/kernel/gui/objects.h>
 #include <stdlib.h>
 // #include <kernel/device/device.h>
 
@@ -28,6 +29,12 @@ extern "C" void kernel_main(void) {
 
 	log_ok("Serial", "Welcome to GTMOS! The serial logging console has loaded!");
 	printf("Hello, GTMOS World!\n");
+
+	Window window2 = WindowCreate(460, 60, 100, 100, "Hello 2!");
+	window2.active = 0;
+	WindowDraw(window2);
+	Window window = WindowCreate(100, 100, 300, 500, "Hello!");
+	WindowDraw(window);
 
 	done();
 }
