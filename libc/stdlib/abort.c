@@ -1,6 +1,6 @@
 #include <stdio.h>
 #include <stdlib.h>
-#include <kernel/arch/arch.h>
+#include <gtmos/kernel/arch/arch.h>
 
 __attribute__((__noreturn__))
 void abort(void) {

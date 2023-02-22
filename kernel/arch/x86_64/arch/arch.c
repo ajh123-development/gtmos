@@ -1,12 +1,12 @@
-#include <kernel/arch/arch.h>
+#include <gtmos/kernel/arch/arch.h>
 #include <gtmos/logging.h>
-#include <kernel/tty.h>
-#include <kernel/framebuffer.h>
+#include <gtmos/kernel/device/tty.h>
+#include <gtmos/kernel/device/framebuffer.h>
 #include "gdt.h"
 #include "idt.h"
 #include "isr.h"
 #include "irq.h"
-#include "vga.h"
+#include "../io/vga.h"
 
 int arch_init() {
     log_ok("x86_64", "Loading the x86_64 CPU subsytem...");

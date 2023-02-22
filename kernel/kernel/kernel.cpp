@@ -1,9 +1,9 @@
 #include <stdio.h>
 
-#include <kernel/tty.h>
-#include <kernel/serial.h>
+#include <gtmos/kernel/device/tty.h>
+#include <gtmos/kernel/device/serial.h>
 #include <gtmos/logging.h>
-#include <kernel/arch/arch.h>
+#include <gtmos/kernel/arch/arch.h>
 #include <stdlib.h>
 // #include <kernel/device/device.h>
 

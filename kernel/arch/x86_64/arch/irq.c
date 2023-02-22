@@ -2,12 +2,12 @@
 #include "irq.h"
 #include "pic.h"
 #include "i8259_pic.h"
-#include <kernel/io.h>
-#include <kernel/arch/arch.h>
+#include <gtmos/kernel/arch/io.h>
+#include <gtmos/kernel/arch/arch.h>
 #include <stddef.h>
 #include <stdio.h>
 #include <gtmos/logging.h>
-#include <gtmos/arrays.h>
+#include <gtmos/utils/arrays.h>
 
 #define MODULE                  "x86_64/PIC"
 

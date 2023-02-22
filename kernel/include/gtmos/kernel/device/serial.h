@@ -5,7 +5,7 @@
 extern "C" {
 #endif
 
-#include <kernel/io.h>
+#include <gtmos/kernel/arch/io.h>
 #include <stddef.h>
 
 #define SERIAL_COM1_BASE                0x3F8      /* COM1 base port */

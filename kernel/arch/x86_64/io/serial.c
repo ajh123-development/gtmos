@@ -1,5 +1,5 @@
-#include <kernel/io.h>
-#include <kernel/serial.h>
+#include <gtmos/kernel/arch/io.h>
+#include <gtmos/kernel/device/serial.h>
 #include <string.h>
 
 /* The I/O ports */

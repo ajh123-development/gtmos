@@ -1,9 +1,9 @@
 #include "isr.h"
 #include "idt.h"
 #include "gdt.h"
-#include "vga.h"
-#include <kernel/tty.h>
-#include <kernel/arch/arch.h>
+#include "../io/vga.h"
+#include <gtmos/kernel/device/tty.h>
+#include <gtmos/kernel/arch/arch.h>
 #include <stdio.h>
 #include <string.h>
 #include <stdlib.h>

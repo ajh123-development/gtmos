@@ -1,4 +1,4 @@
-#include <kernel/device/device.h>
+#include <gtmos/kernel/device/device.h>
 #include <gtmos/logging.h>
 
 DeviceManager::DeviceManager() {

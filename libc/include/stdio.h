@@ -2,7 +2,7 @@
 #define _STDIO_H 1
 
 #include <sys/cdefs.h>
-#include <gtmos/vfs.h>
+#include <gtmos/kernel/vfs/vfs.h>
 #include <limits.h>
 #include <stdarg.h>
 #include <stdint.h>

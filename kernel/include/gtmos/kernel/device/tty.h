@@ -5,7 +5,7 @@
 extern "C" {
 #endif
 
-#include <kernel/io.h>
+#include <gtmos/kernel/arch/io.h>
 #include <stddef.h>
 
 /* The I/O ports */

@@ -1,6 +1,6 @@
-#include <kernel/vfs/vfs.h>
-#include <kernel/tty.h>
-#include <kernel/serial.h>
+#include <gtmos/kernel/vfs/vfs.h>
+#include <gtmos/kernel/device/tty.h>
+#include <gtmos/kernel/device/serial.h>
 
 int vfs_write(fd_t file, uint8_t* data, size_t size)
 {

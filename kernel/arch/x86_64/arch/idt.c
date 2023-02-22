@@ -1,6 +1,6 @@
 #include "idt.h"
 #include <stdint.h>
-#include <gtmos/binary.h>
+#include <gtmos/utils/binary.h>
 
 typedef struct
 {

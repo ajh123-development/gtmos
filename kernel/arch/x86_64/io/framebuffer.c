@@ -1,5 +1,5 @@
-#include <kernel/framebuffer.h>
-#include <kernel/tty.h>
+#include <gtmos/kernel/device/framebuffer.h>
+#include <gtmos/kernel/device/tty.h>
 #include <gtmos/logging.h>
 #include <gtmos/limine.h>
 

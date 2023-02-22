@@ -1,8 +1,8 @@
 #include <stdio.h>
 
 #if defined(__is_libk)
-#include <kernel/tty.h>
-#include <kernel/serial.h>
+#include <gtmos/kernel/device/tty.h>
+#include <gtmos/kernel/device/serial.h>
 #endif
 
 void putc(char c) {
