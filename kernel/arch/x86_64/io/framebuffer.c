@@ -14,8 +14,8 @@ static volatile struct limine_framebuffer_request buffer_request = {
 struct limine_framebuffer *buffer;
 
 int ok = 0;
-int posX = 0;
-int posY = 0;
+unsigned int posX = 0;
+unsigned int posY = 0;
 uint32_t textColor = VGA_COLOR_WHITE;
 
 void Buffer_Initialize() {
@@ -39,9 +39,9 @@ void Buffer_PlotPixel(int x,int y, uint32_t color) {
 
 void Buffer_FillColor(uint32_t color) {
     if (ok) {
-        for (int y = 0; y < buffer->height; y++)
+        for (unsigned int y = 0; y < buffer->height; y++)
         {
-            for (int x = 0; x < buffer->width; x++)
+            for (unsigned int x = 0; x < buffer->width; x++)
                 Buffer_PlotPixel(x, y, color);
         }
     }
@@ -154,33 +154,33 @@ void Term_Setpos(int x, int y) {
 
 void Term_Putchar(char c) {
     for (int row = 0; row < 8; row++) {
-        int data = font8x8_basic[c][row];
+        int glyph = c;
+        int data = font8x8_basic[glyph][row];
         for (int col = 0; col < 8; col++) {
             if ((data >> col) & 1) {
-                if ((col+(posX*8)) > buffer->width) {
+                if ((col+posX) > buffer->width) {
                     posX = 0;
-                    posY = posY + 1;
+                    posY = posY + 8;
                 }
-                Buffer_PlotPixel(col+(posX*8), row+(posY*8), textColor);
+                Buffer_PlotPixel(col+posX, row+posY, textColor);
             }
         }
     }
-
+    posX = posX + 8;
 }
 
 void Term_Write(const char* data, size_t size) {
-    for (int i = 0; i < size; i++) {
+    for (unsigned int i = 0; i < size; i++) {
         char c = data[i];
         if (c == '\n') {
             posX = 0;
-            posY = posY + 1;
+            posY = posY + 8;
         } else {
             Term_Putchar(c);
-            posX = posX + 1;
         }
     }
 }
 
 void Term_WriteString(const char* data) {
-    Term_Write(data, sizeof(data));
+    Term_Write(data, strlen(data));
 }

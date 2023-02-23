@@ -30,7 +30,7 @@ extern "C" void kernel_main(void) {
 	log_ok("Serial", "Welcome to GTMOS! The serial logging console has loaded!");
 	printf("Hello, GTMOS World!\n");
 
-	Window window2 = WindowCreate(460, 60, 100, 100, "Hello 2!");
+	Window window2 = WindowCreate(460, 60, 200, 200, "Hello 2!");
 	window2.active = 0;
 	WindowDraw(window2);
 	Window window = WindowCreate(100, 100, 300, 500, "Hello!");
