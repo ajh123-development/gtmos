@@ -1,6 +1,6 @@
-/* Tell the linker that we want an x86_64 ELF64 output file */
-OUTPUT_FORMAT(elf64-x86-64)
-OUTPUT_ARCH(i386:x86-64)
+/* Tell the linker that we want an i386 ELF32 output file */
+OUTPUT_FORMAT(elf32-i386)
+OUTPUT_ARCH(i386)
 
 /* We want the symbol kernel_main to be our entry point */
 ENTRY(kernel_main)

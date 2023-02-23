@@ -43,14 +43,14 @@ clean:
 	rm -rf ${ROOT_DIR}/gtmos.iso
 
 run: iso
-	qemu-system-x86_64 -M q35 -m 2G -cdrom ${ROOT_DIR}/gtmos.iso -boot d -serial stdio
+	qemu-system-i386 -M q35 -m 2G -cdrom ${ROOT_DIR}/gtmos.iso -boot d -serial stdio
 
 run-uefi: ovmf-x64 iso
-	qemu-system-x86_64 -M q35 -m 2G -bios ${ROOT_DIR}/ovmf-x64/OVMF.fd -cdrom ${ROOT_DIR}/gtmos.iso -boot d  -serial stdio
+	qemu-system-i386 -M q35 -m 2G -bios ${ROOT_DIR}/ovmf-x64/OVMF.fd -cdrom ${ROOT_DIR}/gtmos.iso -boot d  -serial stdio
 
 ovmf-x64:
 	mkdir -p ${ROOT_DIR}/ovmf-x64
-	cd ${ROOT_DIR}/ovmf-x64 && curl -o OVMF-X64.zip https://efi.akeo.ie/OVMF/OVMF-X64.zip && 7z x OVMF-X64.zip
+	cd ${ROOT_DIR}/ovmf-x64 && curl -o OVMF-X64.zip https://efi.akeo.ie/OVMF/OVMF-IA32.zip && 7z x OVMF-X64.zip
 
 limine:
 	git clone https://github.com/limine-bootloader/limine.git --branch=v4.x-branch-binary --depth=1
