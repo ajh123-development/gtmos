@@ -58,9 +58,11 @@ limine:
 
 iso: limine build
 	rm -rf ${ROOT_DIR}/iso_root
-	mkdir -p ${ROOT_DIR}/iso_root
-	cp ${BOOTDIR}/gtmos.elf \
+	mkdir -p ${ROOT_DIR}/iso_root/EFI/BOOT
+	cp ${BOOTDIR}/gtmos.elf ${ROOT_DIR}/startup.nsh \
 		${BOOTDIR}/limine.cfg ${ROOT_DIR}/limine/limine.sys ${ROOT_DIR}/limine/limine-cd.bin ${ROOT_DIR}/limine/limine-cd-efi.bin ${ROOT_DIR}/iso_root/
+	cp ${ROOT_DIR}/limine/BOOTAA64.EFI ${ROOT_DIR}/limine/BOOTIA32.EFI ${ROOT_DIR}/limine/BOOTX64.EFI \
+		${ROOT_DIR}/iso_root/EFI/BOOT
 	xorriso -as mkisofs -b limine-cd.bin \
 		-no-emul-boot -boot-load-size 4 -boot-info-table \
 		--efi-boot limine-cd-efi.bin \
