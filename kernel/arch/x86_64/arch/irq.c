@@ -9,7 +9,7 @@
 #include <gtmos/logging.h>
 #include <gtmos/utils/arrays.h>
 
-#define MODULE                  "x86_64/PIC"
+#define MODULE                  "x86_64/IRQ"
 
 IRQHandler g_IRQHandlers[16];
 static const PICDriver* g_Driver = NULL;
@@ -38,7 +38,7 @@ void IRQ_Initialize()
         i8259_GetDriver(),
     };
 
-    for (int i = 0; i < SIZE(drivers); i++) {
+    for (unsigned int i = 0; i < SIZE(drivers); i++) {
         if (drivers[i]->Probe()) {
             g_Driver = drivers[i];
         }

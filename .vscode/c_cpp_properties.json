@@ -10,7 +10,11 @@
             ],
             "cStandard": "gnu11",
             "cppStandard": "c++11",
-            "configurationProvider": "ms-vscode.makefile-tools"
+            "intelliSenseMode": "gcc-x86",
+            "configurationProvider": "ms-vscode.makefile-tools",
+            "compilerArgs": [
+                "-O2", "-g", "-fPIC", "-ffreestanding", "-Wall", "-Wextra"
+            ]
         },
         {
             "name": "GTMOS Development",
@@ -19,7 +23,11 @@
             ],
             "cStandard": "gnu11",
             "cppStandard": "c++11",
-            "configurationProvider": "ms-vscode.makefile-tools"
+            "intelliSenseMode": "gcc-x86",
+            "configurationProvider": "ms-vscode.makefile-tools",
+            "compilerArgs": [
+                "-O2", "-g", "-fPIC"
+            ]
         }
     ],
     "version": 4
