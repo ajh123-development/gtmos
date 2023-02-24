@@ -4,9 +4,9 @@ current_dir:=$(patsubst %/,%,$(dir $(mkfile_path)))
 ROOT_DIR:=${current_dir}
 PWD=$(shell pwd)
 
-DEFAULT_HOST=i686-elf
+DEFAULT_HOST=x86_64-elf
 HOST=${DEFAULT_HOST}
-HOSTARCH=i386
+HOSTARCH=x86_64
 
 CFLAGS?=-O2 -g -fPIC
 CPPFLAGS?=
@@ -26,7 +26,7 @@ AR=${HOST}-ar
 AS=${HOST}-as
 CC=${HOST}-gcc
 CXX=${HOST}-g++
-ASM=nasm -f elf
+ASM=nasm -f elf64
 
 CC:=${CC} --sysroot=${SYSROOT}
 CXX:=${CXX} --sysroot=${SYSROOT} -fno-rtti -fno-exceptions
