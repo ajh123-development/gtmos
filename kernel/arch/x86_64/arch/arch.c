@@ -8,11 +8,6 @@
 #include "irq.h"
 #include "../io/vga.h"
 
-void timer(Registers* regs)
-{
-    log_crit(".", ".");
-}
-
 int arch_init() {
     log_ok("x86_64", "Loading the x86_64 CPU subsytem...");
     GDT_Initialize();
@@ -24,7 +19,6 @@ int arch_init() {
     IRQ_Initialize();
     log_debug("x86_64/IRQ", "The Interrupt Requets have loaded corectly!");
     log_ok("x86_64", "The x86_64 subsytem has loaded corectly!");
-    IRQ_RegisterHandler(0, timer);
     return 0;
 }
 

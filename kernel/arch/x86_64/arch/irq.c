@@ -14,9 +14,9 @@
 IRQHandler g_IRQHandlers[16];
 static const PICDriver* g_Driver = NULL;
 
-void IRQ_Handler(Registers* regs)
-{
+void IRQ_Handler(Registers* regs) {
     int irq = regs->interrupt - PIC_REMAP_OFFSET;
+    log_debug(MODULE, "Enter IRQ Handler2");
     
     if (g_IRQHandlers[irq] != NULL)
     {
@@ -32,8 +32,7 @@ void IRQ_Handler(Registers* regs)
     g_Driver->SendEndOfInterrupt(irq);
 }
 
-void IRQ_Initialize()
-{
+void IRQ_Initialize() {
     const PICDriver* drivers[] = {
         i8259_GetDriver(),
     };
@@ -53,8 +52,9 @@ void IRQ_Initialize()
     g_Driver->Initialize(PIC_REMAP_OFFSET, PIC_REMAP_OFFSET + 8, false);
 
     // register ISR handlers for each of the 16 irq lines
-    for (int i = 0; i < 16; i++)
+    for (int i = 0; i < 16; i++) {
         ISR_RegisterHandler(PIC_REMAP_OFFSET + i, IRQ_Handler);
+    }
 
     // enable interrupts
     EnableInterrupts();
@@ -63,7 +63,7 @@ void IRQ_Initialize()
     // g_Driver->Unmask(1);
 }
 
-void IRQ_RegisterHandler(int irq, IRQHandler handler)
-{
+void IRQ_RegisterHandler(int irq, IRQHandler handler) {
     g_IRQHandlers[irq] = handler;
+    log_debug(MODULE, "Registered IRQ Handler %d", irq);
 }

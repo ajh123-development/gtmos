@@ -10,7 +10,7 @@
 #include <stddef.h>
 #include <gtmos/logging.h>
 
-#define MODULE          "ISR"
+#define MODULE          "x86_64/ISR"
 
 ISRHandler g_ISRHandlers[256];
 
@@ -51,17 +51,17 @@ static const char* const g_Exceptions[] = {
 
 void ISR_InitializeGates();
 
-void ISR_Initialize()
-{
+void ISR_Initialize() {
     ISR_InitializeGates();
     for (int i = 0; i < 256; i++)
         IDT_EnableGate(i);
 
     IDT_DisableGate(0x80);
+    log_debug(MODULE, "Gates have been initialized");
 }
 
-void ISR_Handler(Registers* regs)
-{
+void ISR_Handler(Registers* regs) {
+    log_debug(MODULE, "Enter ISR Handler");
     if (g_ISRHandlers[regs->interrupt] != NULL)
         g_ISRHandlers[regs->interrupt](regs);
     else if (regs->interrupt >= 32)
@@ -84,8 +84,8 @@ void ISR_Handler(Registers* regs)
     }
 }
 
-void ISR_RegisterHandler(int interrupt, ISRHandler handler)
-{
+void ISR_RegisterHandler(int interrupt, ISRHandler handler) {
     g_ISRHandlers[interrupt] = handler;
     IDT_EnableGate(interrupt);
+    log_debug(MODULE, "Enabled interrupt %d", interrupt);
 }

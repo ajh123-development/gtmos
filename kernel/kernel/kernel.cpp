@@ -17,7 +17,6 @@ static void done(void) {
 }
 
 extern "C" void kernel_main(void) {
-	DisableInterrupts();
 	serial_initialize(SERIAL_COM1_BASE);
 	int ok = arch_init();
 	if (ok == 1) {

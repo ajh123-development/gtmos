@@ -1,6 +1,9 @@
 #include "pic.h"
 #include <gtmos/kernel/arch/io.h>
+#include <gtmos/logging.h>
 #include <stdbool.h>
+
+#define MODULE                  "8259 PIC"
 
 #define PIC1_COMMAND_PORT           0x20
 #define PIC1_DATA_PORT              0x21
@@ -102,12 +105,14 @@ void i8259_Configure(uint8_t offsetPic1, uint8_t offsetPic2, bool autoEoi) {
 
     // mask all interrupts until they are enabled by the device driver
     i8259_SetMask(0xFFFF);
+    log_debug(MODULE, "PIC configured");
 }
 
 void i8259_SendEndOfInterrupt(int irq) {
     if (irq >= 8)
         outb(PIC2_COMMAND_PORT, PIC_CMD_END_OF_INTERRUPT);
     outb(PIC1_COMMAND_PORT, PIC_CMD_END_OF_INTERRUPT);
+    log_debug(MODULE, "Irq %d has ended", irq);
 }
 
 void i8259_Disable() {
@@ -116,10 +121,12 @@ void i8259_Disable() {
 
 void i8259_Mask(int irq) {
     i8259_SetMask(g_PicMask | (1 << irq));
+    log_debug(MODULE, "Masked irq %d", irq);
 }
 
 void i8259_Unmask(int irq) {
     i8259_SetMask(g_PicMask & ~(1 << irq));
+    log_debug(MODULE, "Unmasked irq %d", irq);
 }
 
 uint16_t i8259_ReadIrqRequestRegister() {
