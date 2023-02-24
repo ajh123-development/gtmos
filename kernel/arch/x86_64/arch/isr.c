@@ -62,24 +62,26 @@ void ISR_Initialize() {
 
 void ISR_Handler(Registers* regs) {
     log_debug(MODULE, "Enter ISR Handler");
-    if (g_ISRHandlers[regs->interrupt] != NULL)
-        g_ISRHandlers[regs->interrupt](regs);
-    else if (regs->interrupt >= 32)
-        log_err(MODULE, "Unhandled interrupt %s!", regs->interrupt);
+    if (g_ISRHandlers[regs->int_num] != NULL)
+        g_ISRHandlers[regs->int_num](regs);
+    else if (regs->int_num >= 32)
+        log_err(MODULE, "Unhandled interrupt %s!", regs->int_num);
     else 
     {
         const char *my_string = "  Unhandled exception %d (%s)\n"
                                 "Technical information:"
-                                "  eax=%x  ebx=%x  ecx=%x  edx=%x  esi=%x  edi=%x\n"
-                                "  esp=%x  ebp=%x  eip=%x  eflags=%x  cs=%x  ds=%x  ss=%x\n"
-                                "  interrupt=%x  errorcode=%x\n";
+                                "  r15=%x  r14=%x  r13=%x     r12=%x  r11=%x  r10=%x r9=%x r8=%x\n"
+                                "  rdi=%x  rsi=%x  rbp=%x     rbx=%x  rdx=%x  rcx=%x rax=%x\n"
+                                "  rip=%x  cs=%x   rflags=%x  rsp=%x  ss=%x\n"
+                                "  int_num=%x  error_code=%x\n";
 
         panic(
             my_string, 
-            regs->interrupt, g_Exceptions[regs->interrupt],
-            regs->eax, regs->ebx, regs->ecx, regs->edx, regs->esi, regs->edi,
-            regs->esp, regs->ebp, regs->eip, regs->eflags, regs->cs, regs->ds, regs->ss,
-            regs->interrupt, regs->error
+            regs->int_num, g_Exceptions[regs->int_num],
+            regs->r15, regs->r14, regs->r13, regs->r12, regs->r11, regs->r10, regs->r9, regs->r8,
+            regs->rdi, regs->rsi, regs->rbp, regs->rbx, regs->rdx, regs->rcx, regs->rax,
+            regs->rip, regs->cs, regs->rflags, regs->rsp, regs->ss,
+            regs->int_num, regs->error_code
         );
     }
 }

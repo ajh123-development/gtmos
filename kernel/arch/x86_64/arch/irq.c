@@ -15,7 +15,7 @@ IRQHandler g_IRQHandlers[16];
 static const PICDriver* g_Driver = NULL;
 
 void IRQ_Handler(Registers* regs) {
-    int irq = regs->interrupt - PIC_REMAP_OFFSET;
+    int irq = regs->int_num - PIC_REMAP_OFFSET;
     log_debug(MODULE, "Enter IRQ Handler2");
     
     if (g_IRQHandlers[irq] != NULL)
